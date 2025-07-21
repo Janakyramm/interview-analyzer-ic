@@ -1,0 +1,13 @@
+# .env
+creds.json
+.idea/
+CSV/
+DownloadedVideos/
+GeneratedTranscripts/
+InterviewAnalysis/
+Q&A/
+.vscode/
+*.pyc
+__pycache__/
+*.log
+*.db

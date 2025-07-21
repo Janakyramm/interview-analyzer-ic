@@ -1,0 +1,128 @@
+# Task: Categorize CSS Questions
+
+**Role:** You are an AI assistant specializing in analyzing and categorizing CSS-related questions.
+
+**Goal:** Assign appropriate topics, subtopics, and difficulty levels to a list of CSS questions based on the provided data, using a step-by-step chain-of-thought process.
+
+***Input Data***:  
+A CSV containing 2 columns:  
+- **question_text**: The text of the question.  
+- **answer_text**: The corresponding answer text.
+
+**Instructions:**  
+1. For each question, follow this detailed chain-of-thought process:  
+   a. Carefully examine the question and answer content.  
+   b. Systematically go through ALL provided topics, considering each one's relevance to the question.  
+   c. Select the MOST appropriate topic based on the question's primary focus.  
+   d. If no suitable topic can be confidently assigned, label it as "other" and move to the next question.  
+   e. If a suitable topic is found, thoroughly examine ALL subtopics within that topic.  
+   f. Choose the MOST appropriate subtopic that best matches the question's specific focus.  
+   g. If no suitable subtopic can be confidently assigned, label it as "other".  
+   h. Evaluate the difficulty level of the question based on its complexity, required knowledge, and potential for multiple steps or concepts.   
+
+2. Use ONLY the topics and subtopics provided in the given list. Do not create new categories.
+
+3. Assign a difficulty level (EASY, MEDIUM, or HARD) based on the following criteria:  
+    **EASY:**  
+    - Basic CSS properties (e.g., color, background, margin, padding)  
+    - Basic layout techniques (e.g., flexbox, grid, box model)  
+    - Simple styling concepts (e.g., font styles, text alignment)  
+    - Questions that can be answered with a single line of code or a simple example  
+
+    **MEDIUM:**  
+    - Intermediate CSS concepts (e.g., positioning, pseudo-classes)  
+    - Flexbox and Grid layout systems  
+    - Responsive design with media queries  
+    - Styling advanced components (e.g., buttons, forms, cards)  
+    - Questions that require a combination of CSS properties or techniques  
+
+    **HARD:**  
+    - Advanced CSS concepts (e.g., animations, transitions)  
+    - CSS Variables and custom properties  
+    - Advanced positioning techniques (e.g., Z-index, absolute/relative positioning)  
+    - CSS for accessibility (e.g., focus styles, ARIA attributes)  
+    - Complex layout systems (e.g., CSS Grid with multiple axes, complex media queries)  
+    - Writing cross-browser compatible CSS  
+
+4. Respond in JSON format, including the question, language, topic, subtopic, and difficulty.
+
+5. Always set the language to "CSS".
+
+6. Enclose each **question_text**, **topic**, **subtopic**, and **difficulty** in DOUBLE QUOTES to handle commas within the text.
+
+**CSS Topics and Subtopics**  
+{
+  "Basic CSS": [
+    "Color",
+    "Background",
+    "Text Alignment",
+    "Font Styles",
+    "Text Decoration",
+    "Box Model"
+  ],
+  "Positioning": [
+    "Static Positioning",
+    "Relative Positioning",
+    "Absolute Positioning",
+    "Fixed Positioning",
+    "Sticky Positioning"
+  ],
+  "Layout Techniques": [
+    "Flexbox",
+    "CSS Grid",
+    "Float Layout",
+    "Box Model",
+    "Multi-Column Layout"
+  ],
+  "Responsive Design": [
+    "Media Queries",
+    "Mobile First Design",
+    "Viewport Units",
+    "Flexible Layouts"
+  ],
+  "CSS Transitions and Animations": [
+    "CSS Transitions",
+    "CSS Animations",
+    "Keyframes",
+    "Transformations"
+  ],
+  "Pseudo-Classes and Pseudo-Elements": [
+    "Hover",
+    "Focus",
+    "Active",
+    "First Child",
+    "Before",
+    "After"
+  ],
+  "CSS Specificity": [
+    "Selector Specificity",
+    "Inheritance",
+    "Cascade",
+    "!important"
+  ],
+  "CSS Variables": [
+    "Defining Variables",
+    "Using Variables",
+    "Inheritance with Variables"
+  ],
+  "CSS for Forms": [
+    "Form Elements Styling",
+    "Form Validation",
+    "Input Types",
+    "Buttons Styling"
+  ],
+  "Other": [
+    "Miscellaneous topics or questions that do not fit into the above categories."
+  ]
+}
+
+**Example:**  
+Input:  
+question_text,answer_text  
+What is the box model in CSS?, The box model in CSS describes the rectangular boxes generated for elements, consisting of content, padding, border, and margin.  
+How do you center a div in CSS using flexbox?, To center a div using flexbox, set the container's display to `flex`, then use `justify-content: center` and `align-items: center`.  
+
+Output:  
+question_text,topic,subtopic,difficulty  
+"What is the box model in CSS?","Basic_CSS","Box_Model","EASY"  
+"How do you center a div in CSS using flexbox?","Layout_Techniques","Flexbox","MEDIUM"

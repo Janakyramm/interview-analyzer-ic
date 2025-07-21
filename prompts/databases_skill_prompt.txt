@@ -1,0 +1,136 @@
+# Task: Categorize Database Questions
+
+**Role:** You are an AI assistant specializing in analyzing and categorizing Database-related questions.
+
+**Goal:** Assign appropriate topics, subtopics, and difficulty levels to a list of Database questions based on the provided data, using a step-by-step chain-of-thought process.
+
+***Input Data***:  
+A CSV containing 2 columns:  
+- **question_text**: The text of the question.  
+- **answer_text**: The corresponding answer text.
+
+**Instructions:**  
+1. For each question, follow this detailed chain-of-thought process:  
+   a. Carefully examine the question and answer content.  
+   b. Systematically go through ALL provided topics, considering each one's relevance to the question.  
+   c. Select the MOST appropriate topic based on the question's primary focus.  
+   d. If no suitable topic can be confidently assigned, label it as "other" and move to the next question.  
+   e. If a suitable topic is found, thoroughly examine ALL subtopics within that topic.  
+   f. Choose the MOST appropriate subtopic that best matches the question's specific focus.  
+   g. If no suitable subtopic can be confidently assigned, label it as "other".  
+   h. Evaluate the difficulty level of the question based on its complexity, required knowledge, and potential for multiple steps or concepts.  
+
+2. Use ONLY the topics and subtopics provided in the given list. Do not create new categories.
+
+3. Assign a difficulty level (EASY, MEDIUM, or HARD) based on the following criteria:  
+    **EASY:**  
+    - Basic database concepts (e.g., primary keys, foreign keys, basic queries)  
+    - Simple SQL queries (e.g., SELECT, WHERE, INSERT, DELETE, UPDATE)  
+    - Basic table design and relationships  
+
+    **MEDIUM:**  
+    - Intermediate database concepts (e.g., normalization, indexing)  
+    - Writing complex SQL queries (e.g., joins, subqueries, aggregate functions)  
+    - Database transactions and ACID properties  
+    - Optimization techniques (e.g., query tuning)  
+
+    **HARD:**  
+    - Advanced database concepts (e.g., sharding, replication, database partitioning)  
+    - Distributed databases (e.g., Cassandra, MongoDB, DynamoDB)  
+    - Handling large-scale data and performance bottlenecks  
+    - Database security, backups, and disaster recovery  
+
+4. Respond in JSON format, including the question, language, topic, subtopic, and difficulty.
+
+5. Always set the language to "DATABASES".
+
+6. Enclose each **question_text**, **topic**, **subtopic**, and **difficulty** in DOUBLE QUOTES to handle commas within the text.
+
+**Database Topics and Subtopics**  
+{
+  "Database Basics": [
+    "Primary Keys",
+    "Foreign Keys",
+    "Relationships",
+    "Data Types",
+    "Table Design"
+  ],
+  "SQL": [
+    "Basic Queries (SELECT, INSERT, UPDATE, DELETE)",
+    "Joins",
+    "Subqueries",
+    "Aggregate Functions",
+    "SQL Constraints"
+  ],
+  "Database Design": [
+    "Normalization",
+    "Denormalization",
+    "Entity-Relationship Diagrams",
+    "Schema Design"
+  ],
+  "Indexing": [
+    "Clustered Index",
+    "Non-Clustered Index",
+    "Index Design",
+    "Indexing Best Practices"
+  ],
+  "Transactions": [
+    "ACID Properties",
+    "Transaction Isolation Levels",
+    "Deadlocks",
+    "Locking Mechanisms"
+  ],
+  "Database Optimization": [
+    "Query Tuning",
+    "Execution Plans",
+    "Caching",
+    "Load Balancing"
+  ],
+  "Database Administration": [
+    "User Management",
+    "Database Backup and Recovery",
+    "Database Security",
+    "Monitoring and Maintenance"
+  ],
+  "Distributed Databases": [
+    "Replication",
+    "Sharding",
+    "Partitioning",
+    "CAP Theorem",
+    "Consistency Models"
+  ],
+  "NoSQL Databases": [
+    "Document Stores (MongoDB, Couchbase)",
+    "Column Stores (Cassandra, HBase)",
+    "Key-Value Stores (Redis, DynamoDB)",
+    "Graph Databases (Neo4j, ArangoDB)"
+  ],
+  "Cloud Databases": [
+    "AWS RDS",
+    "Google Cloud Spanner",
+    "Azure SQL Database",
+    "Serverless Databases"
+  ],
+  "Database Security": [
+    "Encryption",
+    "Authentication",
+    "Access Control",
+    "Data Masking"
+  ],
+  "Other": [
+    "Miscellaneous topics or questions that do not fit into the above categories."
+  ]
+}
+
+**Example:**  
+Input:  
+question_text,answer_text  
+What is the difference between clustered and non-clustered indexes?, A clustered index determines the physical order of data in a table, while a non-clustered index creates a separate structure for lookups.  
+What is a foreign key in a database?, A foreign key is a column or group of columns in a table that establishes a link between data in two tables.  
+How do you ensure database recovery after a failure?, Database recovery can be ensured by using backups, transaction logs, and point-in-time recovery techniques.  
+
+Output:  
+question_text,topic,subtopic,difficulty  
+"What is the difference between clustered and non-clustered indexes?","Indexing","Clustered Index","MEDIUM"  
+"What is a foreign key in a database?","Database Basics","Foreign Keys","EASY"  
+"How do you ensure database recovery after a failure?","Database Administration","Database Backup and Recovery","HARD"

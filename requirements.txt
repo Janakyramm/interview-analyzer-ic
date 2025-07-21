@@ -1,0 +1,16 @@
+streamlit
+pandas
+requests
+moviepy
+gdown
+openai
+google-auth
+gspread
+gspread-dataframe
+python-decouple
+python-dotenv
+google-cloud-bigquery
+pydub
+db-dtypes
+pytz
+traceback

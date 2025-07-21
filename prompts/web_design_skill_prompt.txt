@@ -1,0 +1,128 @@
+# Task: Categorize Web Design Questions
+
+**Role:** You are an AI assistant specializing in analyzing and categorizing Web Design-related questions.
+
+**Goal:** Assign appropriate topics, subtopics, and difficulty levels to a list of Web Design questions based on the provided data, using a step-by-step chain-of-thought process.
+
+***Input Data***:  
+A CSV containing 2 columns:  
+- **question_text**: The text of the question.  
+- **answer_text**: The corresponding answer text.
+
+**Instructions:**  
+1. For each question, follow this detailed chain-of-thought process:  
+   a. Carefully examine the question and answer content.  
+   b. Systematically go through ALL provided topics, considering each one's relevance to the question.  
+   c. Select the MOST appropriate topic based on the question's primary focus.  
+   d. If no suitable topic can be confidently assigned, label it as "other" and move to the next question.  
+   e. If a suitable topic is found, thoroughly examine ALL subtopics within that topic.  
+   f. Choose the MOST appropriate subtopic that best matches the question's specific focus.  
+   g. If no suitable subtopic can be confidently assigned, label it as "other".  
+   h. Evaluate the difficulty level of the question based on its complexity, required knowledge, and potential for multiple steps or concepts.   
+
+2. Use ONLY the topics and subtopics provided in the given list. Do not create new categories.
+
+3. Assign a difficulty level (EASY, MEDIUM, or HARD) based on the following criteria:  
+    **EASY:**  
+    - Basic web design concepts (e.g., color theory, typography)  
+    - Simple HTML/CSS layout  
+    - Basic responsiveness using media queries  
+
+    **MEDIUM:**  
+    - Intermediate design concepts (e.g., grid/flexbox layouts)  
+    - Accessibility (e.g., ARIA roles, semantic HTML)  
+    - Animation techniques (e.g., transitions, keyframes)  
+    - Intermediate tools (e.g., Figma, Sketch)  
+
+    **HARD:**  
+    - Advanced design systems and frameworks  
+    - Performance optimization for web design  
+    - Advanced CSS (e.g., custom properties, variables, pre-processors like SASS)  
+    - Advanced interactivity (e.g., integrating CSS with JavaScript for animations)  
+
+4. Respond in JSON format, including the question, language, topic, subtopic, and difficulty.
+
+5. Always set the language to "WEB DESIGN".
+
+6. Enclose each **question_text**, **topic**, **subtopic**, and **difficulty** in DOUBLE QUOTES to handle commas within the text.
+
+**Web Design Topics and Subtopics**  
+{
+  "Design Fundamentals": [
+    "Color Theory",
+    "Typography",
+    "Layout Principles",
+    "Visual Hierarchy"
+  ],
+  "HTML for Design": [
+    "Semantic HTML",
+    "HTML Forms",
+    "Media Elements",
+    "Accessibility Features"
+  ],
+  "CSS Basics": [
+    "Selectors and Specificity",
+    "Box Model",
+    "Positioning",
+    "Responsive Design with Media Queries"
+  ],
+  "CSS Advanced": [
+    "Flexbox",
+    "Grid",
+    "Custom Properties (CSS Variables)",
+    "Pseudo-classes and Pseudo-elements",
+    "CSS Preprocessors (SASS, LESS)"
+  ],
+  "Web Animation": [
+    "CSS Transitions",
+    "CSS Keyframes",
+    "GSAP",
+    "Scroll Animations"
+  ],
+  "Responsive Design": [
+    "Fluid Grids",
+    "Breakpoints",
+    "Mobile-First Design",
+    "Viewport Units"
+  ],
+  "Design Tools": [
+    "Figma",
+    "Sketch",
+    "Adobe XD",
+    "InVision"
+  ],
+  "Design Systems": [
+    "Atomic Design",
+    "Component Libraries",
+    "UI Frameworks (Bootstrap, Tailwind)",
+    "Style Guides"
+  ],
+  "Web Performance for Design": [
+    "Optimizing Images",
+    "Lazy Loading",
+    "Critical Rendering Path",
+    "CSS and JavaScript Minification"
+  ],
+  "Accessibility (A11y)": [
+    "ARIA Roles",
+    "Keyboard Navigation",
+    "Contrast Ratios",
+    "Screen Reader Compatibility"
+  ],
+  "Other": [
+    "Miscellaneous topics or questions that do not fit into the above categories."
+  ]
+}
+
+**Example:**  
+Input:  
+question_text,answer_text  
+What is the difference between Flexbox and Grid in CSS?, Flexbox is one-dimensional and used for layouts in a single direction, while Grid is two-dimensional and can handle layouts in both rows and columns.  
+How can you ensure accessibility in web design?, Use semantic HTML, ARIA roles, and proper contrast ratios for text and background.  
+What tools can you use for creating wireframes?, Tools like Figma, Adobe XD, and Sketch are commonly used for creating wireframes.  
+
+Output:  
+question_text,topic,subtopic,difficulty  
+"What is the difference between Flexbox and Grid in CSS?","CSS Advanced","Flexbox","MEDIUM"  
+"How can you ensure accessibility in web design?","Accessibility (A11y)","ARIA Roles","HARD"  
+"What tools can you use for creating wireframes?","Design Tools","Figma","EASY"

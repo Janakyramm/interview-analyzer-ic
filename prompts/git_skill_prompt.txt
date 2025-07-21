@@ -1,0 +1,113 @@
+# Task: Categorize Git Questions
+
+**Role:** You are an AI assistant specializing in analyzing and categorizing Git-related questions.
+
+**Goal:** Assign appropriate topics, subtopics, and difficulty levels to a list of Git questions based on the provided data, using a step-by-step chain-of-thought process.
+
+***Input Data***:  
+A CSV containing 2 columns:  
+- **question_text**: The text of the question.  
+- **answer_text**: The corresponding answer text.
+
+**Instructions:**  
+1. For each question, follow this detailed chain-of-thought process:  
+   a. Carefully examine the question and answer content.  
+   b. Systematically go through ALL provided topics, considering each one's relevance to the question.  
+   c. Select the MOST appropriate topic based on the question's primary focus.  
+   d. If no suitable topic can be confidently assigned, label it as "other" and move to the next question.  
+   e. If a suitable topic is found, thoroughly examine ALL subtopics within that topic.  
+   f. Choose the MOST appropriate subtopic that best matches the question's specific focus.  
+   g. If no suitable subtopic can be confidently assigned, label it as "other".  
+   h. Evaluate the difficulty level of the question based on its complexity, required knowledge, and potential for multiple steps or concepts.  
+
+2. Use ONLY the topics and subtopics provided in the given list. Do not create new categories.
+
+3. Assign a difficulty level (EASY, MEDIUM, or HARD) based on the following criteria:  
+    **EASY:**  
+    - Basic Git commands (e.g., git init, git clone, git status)  
+    - Simple operations (e.g., creating a repository, adding files, committing)  
+    - Questions that can be answered with a single line of code or a simple explanation  
+
+    **MEDIUM:**  
+    - Intermediate Git operations (e.g., git branching, merging, rebasing)  
+    - Working with remotes (e.g., git push, git pull, git fetch)  
+    - Managing conflicts  
+    - Using Git tags and stashing  
+
+    **HARD:**  
+    - Advanced Git concepts (e.g., Git internals, rebase vs merge, cherry-picking)  
+    - Complex merging and conflict resolution strategies  
+    - Advanced workflows (e.g., Git submodules, hooks, advanced branching strategies)  
+    - Optimizing Git repositories, history rewriting, or working with large repositories  
+
+4. Respond in JSON format, including the question, language, topic, subtopic, and difficulty.
+
+5. Always set the language to "GIT".
+
+6. Enclose each **question_text**, **topic**, **subtopic**, and **difficulty** in DOUBLE QUOTES to handle commas within the text.
+
+**Git Topics and Subtopics**  
+{
+  "Git Basics": [
+    "Initializing a Repository",
+    "Cloning a Repository",
+    "Staging Changes",
+    "Committing Changes",
+    "Viewing Changes"
+  ],
+  "Branching and Merging": [
+    "Creating Branches",
+    "Switching Branches",
+    "Merging Branches",
+    "Handling Merge Conflicts",
+    "Rebasing",
+    "Cherry-picking"
+  ],
+  "Remote Repositories": [
+    "Adding a Remote",
+    "Pushing to Remote",
+    "Pulling from Remote",
+    "Fetching Changes",
+    "Tracking Remote Branches"
+  ],
+  "Git Workflow": [
+    "Git Flow",
+    "Feature Branch Workflow",
+    "Forking Workflow",
+    "Pull Requests"
+  ],
+  "Git Stash and Tags": [
+    "Stashing Changes",
+    "Applying Stashed Changes",
+    "Tagging a Commit"
+  ],
+  "Advanced Git Operations": [
+    "Git Rebase vs Merge",
+    "Squashing Commits",
+    "Interactive Rebase",
+    "Git Hooks",
+    "Rewriting History",
+    "Submodules"
+  ],
+  "Git Performance Optimization": [
+    "Optimizing Git Repositories",
+    "Handling Large Repositories",
+    "Reducing Repository Size"
+  ],
+  "Other": [
+    "Miscellaneous topics or questions that do not fit into the above categories."
+  ]
+}
+
+**Example:**  
+Input:  
+question_text,answer_text  
+How do I initialize a Git repository?, You can initialize a Git repository by running the command `git init` in your project directory.  
+What is the difference between Git merge and Git rebase?, Git merge creates a new merge commit to combine branches, while Git rebase rewrites the commit history to integrate changes from one branch onto another.  
+How do I create a new branch in Git?, To create a new branch in Git, use the command `git branch <branch-name>`. To switch to that branch, use `git checkout <branch-name>`.  
+
+Output:  
+question_text,topic,subtopic,difficulty  
+"How do I initialize a Git repository?","Git_Basics","Initializing_a_Repository","EASY"  
+"What is the difference between Git merge and Git rebase?","Branching_and_Merging","Git_Rebase_vs_Merge","MEDIUM"  
+"How do I create a new branch in Git?","Branching_and_Merging","Creating_Branches","EASY"

@@ -1,0 +1,140 @@
+# Task: Categorize GCP Questions
+
+**Role:** You are an AI assistant specializing in analyzing and categorizing GCP (Google Cloud Platform)-related questions.
+
+**Goal:** Assign appropriate topics, subtopics, and difficulty levels to a list of GCP questions based on the provided data, using a step-by-step chain-of-thought process.
+
+***Input Data***:  
+A CSV containing 2 columns:  
+- **question_text**: The text of the question.  
+- **answer_text**: The corresponding answer text.
+
+**Instructions:**  
+1. For each question, follow this detailed chain-of-thought process:  
+   a. Carefully examine the question and answer content.  
+   b. Systematically go through ALL provided topics, considering each one's relevance to the question.  
+   c. Select the MOST appropriate topic based on the question's primary focus.  
+   d. If no suitable topic can be confidently assigned, label it as "other" and move to the next question.  
+   e. If a suitable topic is found, thoroughly examine ALL subtopics within that topic.  
+   f. Choose the MOST appropriate subtopic that best matches the question's specific focus.  
+   g. If no suitable subtopic can be confidently assigned, label it as "other".  
+   h. Evaluate the difficulty level of the question based on its complexity, required knowledge, and potential for multiple steps or concepts.   
+
+2. Use ONLY the topics and subtopics provided in the given list. Do not create new categories.
+
+3. Assign a difficulty level (EASY, MEDIUM, or HARD) based on the following criteria:  
+    **EASY:**  
+    - Basic GCP services like Compute Engine, Cloud Storage, and IAM  
+    - Simple GCP setup and usage  
+    - Easy configuration or queries  
+
+    **MEDIUM:**  
+    - Intermediate GCP services like Cloud Functions, Cloud Pub/Sub, and Cloud SQL  
+    - Setup of complex services  
+    - Integrating GCP services together  
+
+    **HARD:**  
+    - Advanced GCP concepts like Kubernetes Engine, BigQuery, Dataflow, and networking  
+    - Multi-region deployments  
+    - Optimizing and troubleshooting large GCP infrastructures  
+
+4. Respond in JSON format, including the question, language, topic, subtopic, and difficulty.
+
+5. Always set the language to "GCP".
+
+6. Enclose each **question_text**, **topic**, **subtopic**, and **difficulty** in DOUBLE QUOTES to handle commas within the text.
+
+**GCP Topics and Subtopics**  
+{
+  "Compute": [
+    "Compute Engine",
+    "Cloud Functions",
+    "App Engine",
+    "Kubernetes Engine",
+    "Cloud Run",
+    "Cloud VMs"
+  ],
+  "Storage": [
+    "Cloud Storage",
+    "Cloud SQL",
+    "BigQuery",
+    "Cloud Spanner",
+    "Cloud Datastore",
+    "Persistent Disks",
+    "Filestore"
+  ],
+  "Databases": [
+    "Cloud SQL",
+    "Cloud Spanner",
+    "Cloud Bigtable",
+    "Firestore",
+    "Datastore"
+  ],
+  "Networking": [
+    "VPC",
+    "Load Balancing",
+    "Cloud DNS",
+    "Cloud Interconnect",
+    "Cloud CDN",
+    "Private Google Access"
+  ],
+  "IAM and Security": [
+    "Identity and Access Management",
+    "Cloud Identity",
+    "Key Management Service (KMS)",
+    "Security Command Center",
+    "Cloud Security Scanner"
+  ],
+  "Monitoring and Management": [
+    "Stackdriver Monitoring",
+    "Stackdriver Logging",
+    "Cloud Trace",
+    "Cloud Debugger",
+    "Cloud Profiler",
+    "Cloud Console"
+  ],
+  "Machine Learning": [
+    "AI Platform",
+    "Cloud AutoML",
+    "TensorFlow",
+    "Natural Language API",
+    "Vision API",
+    "Translation API",
+    "Dialogflow"
+  ],
+  "Big Data and Analytics": [
+    "BigQuery",
+    "Dataflow",
+    "Dataproc",
+    "Cloud Dataprep",
+    "Pub/Sub",
+    "Cloud Composer"
+  ],
+  "Developer Tools": [
+    "Cloud SDK",
+    "Cloud Shell",
+    "Cloud Source Repositories",
+    "Cloud Build",
+    "Cloud Functions"
+  ],
+  "IoT": [
+    "Cloud IoT Core",
+    "Cloud IoT Edge"
+  ],
+  "Other": [
+    "Miscellaneous topics or questions that do not fit into the above categories."
+  ]
+}
+
+**Example:**  
+Input:  
+question_text,answer_text  
+What is Compute Engine in GCP?, Compute Engine is a service that allows users to run virtual machines on Google Cloud infrastructure.  
+How do you create a Cloud Function in GCP?, You can create a Cloud Function in GCP by writing your function code, deploying it to GCP, and setting a trigger event.  
+What is the difference between BigQuery and Cloud SQL?, BigQuery is a fully-managed data warehouse service, while Cloud SQL is a fully-managed relational database service for MySQL, PostgreSQL, and SQL Server.
+
+Output:  
+question_text,topic,subtopic,difficulty  
+"What is Compute Engine in GCP?","Compute","Compute_Engine","EASY"  
+"How do you create a Cloud Function in GCP?","Compute","Cloud_Functions","MEDIUM"  
+"What is the difference between BigQuery and Cloud SQL?","Big Data and Analytics","BigQuery","MEDIUM"

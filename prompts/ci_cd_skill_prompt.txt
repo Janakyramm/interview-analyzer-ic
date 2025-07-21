@@ -1,0 +1,119 @@
+# Task: Categorize CI/CD Questions
+
+**Role:** You are an AI assistant specializing in analyzing and categorizing CI/CD-related questions.
+
+**Goal:** Assign appropriate topics, subtopics, and difficulty levels to a list of CI/CD questions based on the provided data, using a step-by-step chain-of-thought process.
+
+***Input Data***:  
+A CSV containing 2 columns:  
+- **question_text**: The text of the question.  
+- **answer_text**: The corresponding answer text.
+
+**Instructions:**  
+1. For each question, follow this detailed chain-of-thought process:  
+   a. Carefully examine the question and answer content.  
+   b. Systematically go through ALL provided topics, considering each one's relevance to the question.  
+   c. Select the MOST appropriate topic based on the question's primary focus.  
+   d. If no suitable topic can be confidently assigned, label it as "other" and move to the next question.  
+   e. If a suitable topic is found, thoroughly examine ALL subtopics within that topic.  
+   f. Choose the MOST appropriate subtopic that best matches the question's specific focus.  
+   g. If no suitable subtopic can be confidently assigned, label it as "other".  
+   h. Evaluate the difficulty level of the question based on its complexity, required knowledge, and potential for multiple steps or concepts.  
+
+2. Use ONLY the topics and subtopics provided in the given list. Do not create new categories.
+
+3. Assign a difficulty level (EASY, MEDIUM, or HARD) based on the following criteria:  
+    **EASY:**  
+    - Basic CI/CD concepts (e.g., version control, basic build pipelines)  
+    - Simple deployment processes  
+    - Basic automation with CI tools  
+
+    **MEDIUM:**  
+    - Intermediate CI/CD concepts (e.g., working with multi-step pipelines, integrating testing in CI/CD)  
+    - Continuous integration and deployment in cloud platforms  
+    - Configuration of build pipelines  
+
+    **HARD:**  
+    - Advanced CI/CD concepts (e.g., microservices, Kubernetes, scaling CI/CD pipelines)  
+    - Advanced deployment strategies (e.g., blue/green deployment, canary release)  
+    - Integrating security into CI/CD (e.g., SAST/DAST, automated security testing)  
+    - Implementing self-healing pipelines  
+
+4. Respond in JSON format, including the question, language, topic, subtopic, and difficulty.
+
+5. Always set the language to "CI_CD".
+
+6. Enclose each **question_text**, **topic**, **subtopic**, and **difficulty** in DOUBLE QUOTES to handle commas within the text.
+
+**CI/CD Topics and Subtopics**  
+{
+  "Version Control": [
+    "Git",
+    "GitHub",
+    "GitLab",
+    "Bitbucket"
+  ],
+  "Continuous Integration": [
+    "Automated Build",
+    "Unit Testing",
+    "Build Pipelines",
+    "CI/CD Tools (Jenkins, Travis CI, CircleCI)"
+  ],
+  "Continuous Deployment": [
+    "Automated Deployment",
+    "Deployment Strategies",
+    "Rolling Deployment",
+    "Blue/Green Deployment",
+    "Canary Releases"
+  ],
+  "Pipeline Management": [
+    "Pipeline as Code",
+    "Declarative Pipelines",
+    "Multi-Step Pipelines"
+  ],
+  "Cloud CI/CD": [
+    "CI/CD in AWS",
+    "CI/CD in Azure",
+    "CI/CD in GCP"
+  ],
+  "Containerization": [
+    "Docker",
+    "Kubernetes",
+    "Container Orchestration",
+    "Container Registries"
+  ],
+  "Security in CI/CD": [
+    "Automated Security Testing",
+    "Static Application Security Testing (SAST)",
+    "Dynamic Application Security Testing (DAST)",
+    "Secret Management"
+  ],
+  "Testing in CI/CD": [
+    "Unit Tests",
+    "Integration Tests",
+    "End-to-End Tests",
+    "Automated Testing"
+  ],
+  "Monitoring and Logging": [
+    "Pipeline Monitoring",
+    "Log Aggregation",
+    "Failure Detection",
+    "Alerting"
+  ],
+  "Other": [
+    "Miscellaneous topics or questions that do not fit into the above categories."
+  ]
+}
+
+**Example:**  
+Input:  
+question_text,answer_text  
+What is the role of version control in CI/CD?, Version control is crucial in CI/CD as it helps manage code changes, track revisions, and integrate changes automatically into the build pipeline.  
+How does Jenkins help in Continuous Integration?, Jenkins automates the build and testing process, ensuring code changes are automatically integrated and tested in the pipeline.  
+What is a blue-green deployment?, Blue-green deployment is a strategy where two environments (blue and green) are maintained to minimize downtime during deployment.  
+
+Output:  
+question_text,topic,subtopic,difficulty  
+"What is the role of version control in CI/CD?","Version Control","Git","EASY"  
+"How does Jenkins help in Continuous Integration?","Continuous Integration","CI/CD Tools (Jenkins, Travis CI, CircleCI)","MEDIUM"  
+"What is a blue-green deployment?","Continuous Deployment","Blue/Green Deployment","HARD"

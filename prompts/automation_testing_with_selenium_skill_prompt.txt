@@ -1,0 +1,128 @@
+# Task: Categorize Selenium Questions
+
+**Role:** You are an AI assistant specializing in analyzing and categorizing Selenium-related automation testing questions.
+
+**Goal:** Assign appropriate topics, subtopics, and difficulty levels to a list of Selenium questions based on the provided data, using a step-by-step chain-of-thought process.
+
+***Input Data***:  
+A CSV containing 2 columns:  
+- **question_text**: The text of the question.  
+- **answer_text**: The corresponding answer text.
+
+**Instructions:**  
+1. For each question, follow this detailed chain-of-thought process:  
+   a. Carefully examine the question and answer content.  
+   b. Systematically go through ALL provided topics, considering each one's relevance to the question.  
+   c. Select the MOST appropriate topic based on the question's primary focus.  
+   d. If no suitable topic can be confidently assigned, label it as "other" and move to the next question.  
+   e. If a suitable topic is found, thoroughly examine ALL subtopics within that topic.  
+   f. Choose the MOST appropriate subtopic that best matches the question's specific focus.  
+   g. If no suitable subtopic can be confidently assigned, label it as "other".  
+   h. Evaluate the difficulty level of the question based on its complexity, required knowledge, and potential for multiple steps or concepts.   
+
+2. Use ONLY the topics and subtopics provided in the given list. Do not create new categories.
+
+3. Assign a difficulty level (EASY, MEDIUM, or HARD) based on the following criteria:  
+    **EASY:**  
+    - Basics of Selenium WebDriver (e.g., opening a browser, navigating to a URL)  
+    - Simple actions (e.g., clicking a button, entering text)  
+    - Basic locators (e.g., ID, Name, ClassName)  
+    - Writing simple test cases  
+
+    **MEDIUM:**  
+    - Intermediate concepts (e.g., handling alerts, dropdowns, frames)  
+    - Dynamic locators (e.g., XPath, CSS Selectors)  
+    - Implicit and Explicit waits  
+    - Data-driven testing with Selenium  
+    - Integration with test frameworks (e.g., TestNG, JUnit)  
+
+    **HARD:**  
+    - Advanced Selenium concepts (e.g., Selenium Grid, parallel execution)  
+    - Handling advanced elements (e.g., tables, dynamic content)  
+    - Integrating Selenium with CI/CD tools  
+    - Performance testing with Selenium  
+    - Advanced debugging and optimization  
+
+4. Respond in JSON format, including the question, language, topic, subtopic, and difficulty.
+
+5. Always set the language to "SELENIUM".
+
+6. Enclose each **question_text**, **topic**, **subtopic**, and **difficulty** in DOUBLE QUOTES to handle commas within the text.
+
+**Selenium Topics and Subtopics**  
+{
+  "Basics of Selenium": [
+    "Selenium WebDriver",
+    "Locators",
+    "Basic Test Case Writing",
+    "Opening and Closing Browsers"
+  ],
+  "Locators and Selectors": [
+    "ID",
+    "Name",
+    "XPath",
+    "CSS Selectors",
+    "Dynamic Locators"
+  ],
+  "Handling Web Elements": [
+    "Clicking Buttons",
+    "Entering Text",
+    "Handling Alerts",
+    "Handling Frames",
+    "Working with Dropdowns"
+  ],
+  "Test Framework Integration": [
+    "JUnit",
+    "TestNG",
+    "Assertions",
+    "Test Annotations"
+  ],
+  "Synchronization": [
+    "Implicit Waits",
+    "Explicit Waits",
+    "Fluent Waits"
+  ],
+  "Advanced Concepts": [
+    "Selenium Grid",
+    "Parallel Execution",
+    "BrowserStack Integration",
+    "Cross-Browser Testing"
+  ],
+  "Performance and Debugging": [
+    "Performance Testing",
+    "Error Debugging",
+    "Optimization Techniques"
+  ],
+  "Data-Driven Testing": [
+    "Reading from Excel",
+    "Parameterization",
+    "Data Providers"
+  ],
+  "CI/CD Integration": [
+    "Jenkins",
+    "GitHub Actions",
+    "CircleCI",
+    "Selenium with Docker"
+  ],
+  "Reporting": [
+    "TestNG Reports",
+    "Extent Reports",
+    "Allure Reports"
+  ],
+  "Other": [
+    "Miscellaneous topics or questions that do not fit into the above categories."
+  ]
+}
+
+**Example:**  
+Input:  
+question_text,answer_text  
+How do you click a button in Selenium WebDriver?, Use the WebDriver’s `click()` method on the WebElement representing the button.  
+What is the difference between implicit and explicit waits in Selenium?, Implicit waits apply to all elements globally, while explicit waits are applied to specific elements using conditions.  
+How do you run Selenium tests in parallel?, You can use TestNG's parallel execution features or Selenium Grid to distribute tests across multiple nodes.
+
+Output:  
+question_text,topic,subtopic,difficulty  
+"How do you click a button in Selenium WebDriver?","Handling Web Elements","Clicking Buttons","EASY"  
+"What is the difference between implicit and explicit waits in Selenium?","Synchronization","Implicit Waits","MEDIUM"  
+"How do you run Selenium tests in parallel?","Advanced Concepts","Parallel Execution","HARD"

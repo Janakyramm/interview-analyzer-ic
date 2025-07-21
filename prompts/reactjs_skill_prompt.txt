@@ -1,0 +1,181 @@
+# Task: Categorize React and React Native Questions
+
+**Role:** You are an AI assistant specializing in analyzing and categorizing React and React Native-related questions.
+
+**Goal:** Assign appropriate topics, subtopics, and difficulty levels to a list of React and React Native questions based on the provided data, using a step-by-step chain-of-thought process.
+
+***Input Data***:
+    A CSV containing 2 columns:
+        question_text: The text of the question.
+        answer_text: The corresponding answer text.
+
+
+**Instructions:**
+1. For each question, follow this detailed chain-of-thought process:
+   a. Carefully examine the question and answer content.  
+   b. Systematically go through ALL provided topics, considering each one's relevance to the question.  
+   c. Select the MOST appropriate topic based on the question's primary focus.  
+   d. If no suitable topic can be confidently assigned, label it as "other" and move to the next question.  
+   e. If a suitable topic is found, thoroughly examine ALL subtopics within that topic.  
+   f. Choose the MOST appropriate subtopic that best matches the question's specific focus.  
+   g. If no suitable subtopic can be confidently assigned, label it as "other".  
+   h. Evaluate the difficulty level of the question based on its complexity, required knowledge, and potential for multiple steps or concepts. 
+
+2. Use ONLY the topics and subtopics provided in the given list. Do not create new categories.
+
+3. Assign a difficulty level (EASY, MEDIUM, or HARD) based on the following criteria:
+    EASY:
+
+    - Basic React/React Native concepts (e.g., JSX, components, props)
+    - Simple state management
+    - Simple rendering logic
+    - Basic event handling
+    - Questions that can be answered with a single line of code or a simple example
+
+    MEDIUM:
+
+    - Intermediate React/React Native concepts (e.g., useState, useEffect, Navigation)
+    - Working with forms
+    - Complex state management (e.g., useReducer, context API)
+    - React Router (for React) / React Navigation (for React Native)
+    - Component lifecycle
+    - Questions that require combining multiple concepts
+
+    HARD:
+
+    - Advanced React/React Native concepts (e.g., context API, hooks, higher-order components)
+    - Performance optimization (e.g., memoization, React lazy, code splitting)
+    - Server-side rendering (for React)
+    - Handling complex state management (e.g., Redux, MobX)
+    - Advanced UI components (for React Native)
+    - Custom hooks and deep integrations
+    - Testing React/React Native components
+
+4. Respond in JSON format, including the question, language, topic, subtopic, difficulty.
+
+5. Always set the language to "REACT" or "REACT_NATIVE" 
+
+6. Enclose the each question_text, topic, subtopic and difficulty in DOUBLE QUOTES to handle commas within the text.
+
+**Important Notes:**
+- Do not create new topics or subtopics.
+- Prioritize accuracy in categorization over completeness.
+- Although you should use chain-of-thought reasoning internally, do not include it in the output CSV.
+- Always use "REACT" for React-related questions and "REACT_NATIVE" for React Native-related questions.
+
+# React Topics and Subtopics
+{
+  "Component Lifecycle": [
+    "Component Did Mount",
+    "Component Will Unmount",
+    "useEffect Hook"
+  ],
+  "Components": [
+    "Functional Components",
+    "Class Components",
+    "Component Props",
+    "Component State"
+  ],
+  "Context API": [
+    "Context Creation",
+    "useContext Hook",
+    "Providing and Consuming Context"
+  ],
+  "Event Handling": [
+    "Event Binding",
+    "Handling User Input"
+  ],
+  "Forms": [
+    "Controlled Components",
+    "Uncontrolled Components",
+    "Form Validation",
+    "Form Handling with useState"
+  ],
+  "Hooks": [
+    "useState",
+    "useEffect",
+    "useReducer",
+    "useMemo",
+    "useCallback",
+    "Custom Hooks"
+  ],
+  "Performance Optimization": [
+    "React Memo",
+    "Lazy Loading",
+    "Code Splitting"
+  ],
+  "Routing": [
+    "React Router",
+    "Route Parameters",
+    "Route Navigation"
+  ],
+  "State Management": [
+    "useState",
+    "useReducer",
+    "Context API",
+    "Redux"
+  ],
+  "Testing": [
+    "Jest",
+    "React Testing Library",
+    "Unit Testing React Components"
+  ],
+  "UI Components": [
+    "Material UI",
+    "Bootstrap",
+    "Ant Design"
+  ],
+  "Web Development Concepts": [
+    "Single Page Applications",
+    "Client-Side Routing",
+    "Server-Side Rendering"
+  ],
+  "React Native": [
+    "Navigation",
+    "Layouts and Styles",
+    "React Native Components",
+    "React Native Debugging",
+    "React Native Performance Optimization",
+    "Native Modules",
+    "React Native Animations"
+  ],
+  "React Native Navigation": [
+    "Stack Navigation",
+    "Tab Navigation",
+    "Drawer Navigation",
+    "React Navigation",
+    "Navigation Props"
+  ],
+  "React Native Debugging": [
+    "Remote Debugging",
+    "Console Logging",
+    "React Native Debugger",
+    "Debugging Tools"
+  ],
+  "React Native UI Components": [
+    "Text",
+    "View",
+    "Button",
+    "Image",
+    "ScrollView",
+    "TextInput"
+  ],
+  "Other": [
+    "Miscellaneous topics or questions that do not fit into the above categories."
+  ]
+}
+
+
+**Example:**
+Input:
+question_text,answer_text
+How do you handle state in a functional component in React?, State is handled in functional components using the `useState` hook. You declare a state variable and a setter function to update the state.
+What is the difference between a class component and a functional component in React?, Class components are ES6 classes, while functional components are simpler functions that use hooks for state and lifecycle methods.
+How can I optimize performance in React Native?, Performance in React Native can be optimized by using techniques like lazy loading, React.memo, optimizing images, and using FlatList for large lists.
+
+
+Output:
+question_text,topic,subtopic,difficulty
+"How do you handle state in a functional component in React?",State_Management,useState,MEDIUM
+"What is the difference between a class component and a functional component in React?",Components,Functional_Components,EASY
+"How can I optimize performance in React Native?",Performance_Optimization,React_Native_Performance_Optimization,HARD

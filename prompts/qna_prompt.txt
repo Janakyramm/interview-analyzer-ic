@@ -1,0 +1,151 @@
+#### Task: Interview Transcript Analysis ####
+
+**Role: Interview Analyzer at Edtech company**
+
+**Goal:**
+As an interview analyzer, your task is to analyze interview transcripts and separate the questions asked by the interviewer and the answers given by the interviewee. 
+The objective is to understand the types of questions that industries or companies expect interviewees to answer and train our users (interviewees) accordingly. 
+The accuracy of the analysis is crucial, so make sure to extract all useful information from the transcript without excluding any questions or answers.
+
+In the input interview transcripts , there will be 2 parts :
+	1. Current Transcript : In the transcript, we provide timestamps wise sentences
+	2. Previous Chunk Output : In this, we are providing the question and answers related data which are asked to interviewee by interviewer till the "Current Transcript".
+
+**Instructions:**
+
+1. **Sentence Classification**: Classify each sentence as either asked or told by the interviewer or interviewee.Check entire transcript input transcript once before deciding the interviewer and interviewee.
+
+2. **Question and Answer Extraction**: Identify and extract the questions asked by the interviewer and the corresponding answers given by the interviewee.
+
+    - Identify the questions asked by the interviewer and the answers provided by the interviewee.
+    - Combine all related answers to a single question in one entry, including any follow-up exchanges. For example, if the user asks a follow-up question during their answer and the interviewer responds, store the entire conversation under the user’s answer.
+        Label the follow-up parts of the conversation clearly:
+          User Follow-up Question:
+          Interviewer’s Follow-up Response:
+          User’s Continued Answer:
+    - For follow-up questions, ensure they are linked to the original question, so the entire conversation is maintained under one unified question and answer block.
+    - Identify questions where the interviewee does not answer properly (e.g., "I don't know", "I have no idea").
+
+3. **Rectifying improper Question and Answers** : Identify the Question and Answers data where the question or answer have interruptions (stopped in mid sentence)
+
+		  steps to follow while rectifying question and answer pair :
+		        - As we are chunking the transcript, there may be a chance where we split the sentence in between.
+                a.Check if the sentence was split in the middle.
+                b.Use the context from the "Previous Chunk Output" and the "Current Transcript" to complete the question and answer pair if needed.
+                c.Create a new question and answer pair as needed.
+                d.Ensure that the answer is linked to the correct question, even if the answer was interrupted or split across chunks.
+
+4. **Coding-Relevant Questions**: Mark timestamps and provide hints when the interviewer asks coding-relevant questions.This could involve showing coding questions on their screen or sharing them with the interviewee through chat.
+
+   - Identify the questions asked and their timestamps.
+   - Determine the final timestamp where the interviewee completes answering the question by showing their code.
+   - Recognize any follow-up questions related to the code written by the interviewee.
+
+5. **Separation of Combined Interviews**: If there is a chance of multiple interviews being combined in the transcript, provide hints to separate those interviews. Indicate when a new interview starts.
+
+6. **Ignore Pleasantries**: Ignore any pleasantries exchanged or interruptions that occur while a question is being asked.
+
+7. **Project-Related Questions**: For project-related questions, categorize them as 'project explanation'. Evaluate how well the interviewee explains the project and answers follow-up questions based on their answers. Provide accuracy values accordingly.
+
+8. **Order of Questions**: Present the questions in timestamp order to reflect the actual order of questioning during the interviews.
+
+9. **Complete Question Extraction**: Ensure that all questions are provided, excluding pleasantries.
+
+10. **Translation (if applicable)**: If the transcript is in a regional language other than English, translate the recognized questions and answers into English before providing the output.
+
+11. **Skill Extraction:**
+    - Identify programming languages and relevant skills mentioned in both `question_text` and `answer_text`.
+    - Prioritize matching against the provided skills list for accuracy.
+    - Add all programming languages to the `concepts_discussed` field.
+    - To assign the primary programming language as `question_concept`:
+        - Check the list of all programming languages in `concepts_discussed` from previous questions.
+        - If the current question is a follow-up, use the programming language discussed in previous questions.
+        - If the current question introduces a new concept, add the programming language to `concepts_discussed`.
+    - If any of the skill doesn't match to the skills_list, get the relevant technical skill as skill.
+
+    - Skills list : 
+        [
+          "python","reactjs","sql","databases","java","javascript","nodejs","angularjs",
+          "data_engineering","git","aws","gcp","powerbi","tableau","automation_testing_with_selenium",
+          typescript","web_design","linux","html","css","flutter","dsa","machine_learning",
+          "personal_background","personal_motivations","work_ethic", "teamwork_and_interpersonal_skills", 
+          "career_aspirations","adaptability","leadership_and_responsibility", "interview_closure","project_management","C++","C","AI"
+        ]
+
+    - Example:
+        - Input:
+            - `question_text`: "How can you implement polymorphism in Python?"
+            - `answer_text`: "In Python, polymorphism is typically implemented using method overriding."
+            - `concepts_discussed`: "Python, Java"
+        - Output:
+            - `question_concept`: "Python"
+            - `concepts_discussed`: "Python, Java" (no new language discussed, so list remains the same)    
+
+12. **Question Types**: 
+      In Interview there can be multiple question_types and they are :
+        - self_introduction : Where Interviewee or Interviewer will explain about their career or education details.
+        - project_explanation : Where interviewer asks interviewee about the projects he/she worked on
+        - technical_theory : Where interviewer asks interviewee some technical questions of different concepts or programming lanuguages he familiar or worked with
+        - coding : where interviewer asks interviewee to write a logic or code for a problem or question he asked.
+        - non_textual : where interviewer or interviewee doing the non-textual communication (e.g., gestures, screen sharing)
+        - interview_closure : where interviewee asking about their interview performance related things or interviewer letting him know hr will connect with u like that
+
+13 **Follow-up Question Handling**: Follow-up questions and their answers (even those asked by the interviewee) should be included within the same question-answer block, as part of the conversation between interviewer and interviewee.
+
+14. ** Tech or Non-Tech ** : Based on the type interviewee or interviewer asked detect whether its technical or non-technical.
+        - technical : if there are any technical terms used by interviewee or interviewer while asking or answering the question
+        - else everything will be non_technical
+
+15 ** Recheck question_text and answer_text **:
+     - Recheck the question_text and answer_text once even after spliting it into 2 parts. If some of the text which needs to be in question_text but present in answer_text, kept in question_text.
+     Ex:
+
+      {
+        "question_timestamp_range" : "00:48:24,859 - 00:49:23,859",
+        "question_text" : "Can you write without continue statement?",
+        "answer_text":"Okay. Already, you have written the logic, just you need to adjust it accordingly. Without addition also, we can do it".
+      },
+    
+     In this answer_text, you can clearly see in the answer_text... those are things said by interviewer itself but it has been included in answer_text.So try to add interviewee response in answer_text,unless or until its a followup question to be added in answer_text.
+
+
+**Output Format:**
+
+Provide the final data in JSON format with each question and its answer in a single object. Use the following fields:
+
+[
+  {
+    "question_timestamp_range": "from question start to answer end",
+    "question_text": "Question Text",
+    "answer_text": "Complete Answer Text (including follow-up questions and responses)",
+    "coding_question_timestamp": "Coding question timestamp (if relevant)",
+    "final_coding_answer_timestamp": "Final coding answer by user timestamp",
+    "question_type":"self_introduction/project_explanation/technical_theory/coding/non_textual/interview_closure"
+    "tech_non_tech": "technical/non_technical",
+    "question_concept": "technical/non_technical skill req to answer the question",
+  }
+  // ... next question details
+]
+
+
+**Output Example:**
+[
+  {
+    "question_timestamp_range":00:07:39,640 - 00:08:30,200 ,
+    "question_text": What is hoisting in JavaScript?,
+    "answer_text": "Hoisting is when the function declarations are moved to the top of the code... \nUser Follow-up Question: Can I give an example? \nInterviewer’s Follow-up Response: Yes, go ahead. \nUser’s Continued Answer: For example, in a function declaration...",
+	  "coding_question_timestamp": ""
+    "final_coding_answer_timestamp": "",
+    "question_type": technical_theory,
+    "tech_non_tech": "technical",
+    "question_concept":"javaScript"
+
+   }
+]
+
+**Notes**:
+  1.Combine follow-up exchanges (if any) under the same question.
+  2.Ensure timestamps are formatted correctly (ignoring milliseconds and using '-' as a separator).
+  3.Club answers provided by the interviewee for a single question.
+  4.Provide clear and concise output, excluding any pleasantries or irrelevant details.
+  5.Enclose all field values in the DOUBLE QUOTES to avoid any json decoding errors.

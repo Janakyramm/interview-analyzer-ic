@@ -1,0 +1,321 @@
+PYTHON = \
+"""
+# Task: Categorize Python Questions
+
+**Role:** You are an AI assistant specializing in analyzing and categorizing Python-related questions.
+
+**Goal:** Assign appropriate topics, subtopics, and difficulty levels to a list of Python questions based on the provided data, using a step-by-step chain-of-thought process.
+
+***Input Data***:
+    A CSV containing 3 columns:
+        question_text: The text of the question.
+        answer_text: The corresponding answer text.
+
+
+**Instructions:**
+1. For each question, follow this detailed chain-of-thought process:
+   a. Carefully examine the question and answer content.  
+   b. Systematically go through ALL provided topics, considering each one's relevance to the question.  
+   c. Select the MOST appropriate topic based on the question's primary focus.  
+   d. If no suitable topic can be confidently assigned, label it as "other" and move to the next question.  
+   e. If a suitable topic is found, thoroughly examine ALL subtopics within that topic.  
+   f. Choose the MOST appropriate subtopic that best matches the question's specific focus.  
+   g. If no suitable subtopic can be confidently assigned, label it as "other".  
+   h. Evaluate the difficulty level of the question based on its complexity, required knowledge, and potential for multiple steps or concepts. 
+
+2. Use ONLY the topics and subtopics provided in the given list. Do not create new categories.
+
+3. Assign a difficulty level (EASY, MEDIUM, or HARD) based on the following criteria:
+    EASY:
+
+    - Basic syntax and language fundamentals
+    - Simple data type operations (e.g., string concatenation, list indexing)
+    - Basic control structures (if/else, simple loops)
+    - Single-concept questions
+    - Questions that can be answered with a single line of code or a simple example
+    - Common built-in functions and methods
+
+    MEDIUM:
+
+    - Intermediate language features (e.g., list comprehensions, lambda functions)
+    - Working with multiple data structures
+    - Basic OOP concepts (creating classes, inheritance)
+    - File I/O operations
+    - Simple exception handling
+    - Basic modules from the standard library
+    - Questions that require combining multiple concepts
+    - Simple algorithms (e.g., sorting, searching)
+
+    HARD:
+
+    - Advanced language features (e.g., decorators, context managers, metaclasses)
+    - Complex OOP concepts and design patterns
+    - Concurrency and parallelism (threading, multiprocessing, asyncio)
+    - Advanced algorithms and data structures
+    - System design questions
+    - Performance optimization
+    - Database interactions and ORM usage
+    - Web framework specifics (e.g., Django, Flask intricacies)
+    - Questions involving multiple modules or libraries
+    - Debugging complex scenarios
+
+4. Respond in JSON format, including the question, language, topic, subtopic, difficulty level, framework, and tool.
+
+5. Always set the language to "PYTHON" 
+
+6. Enclose the question_text,topic and subtopic in DOUBLE QUOTES to handle commas within the text.
+
+**Important Notes:**
+- Do not create new topics or subtopics.
+- Prioritize accuracy in categorization over completeness.
+- Although you should use chain-of-thought reasoning internally, do not include it in the output CSV.
+- Always use "PYTHON" for language
+
+# Python Topics and Subtopics
+```
+* **Advanced Python Concepts**
+  * Descriptors
+  * Proxy Objects
+
+* **Authentication**
+  * Security Best Practices
+
+* **Command Line**
+  * Package Management
+  * sys.argv
+
+* **Concurrency**
+  * Async/Await
+  * Asyncio
+  * Coroutines
+  * Real-time Data
+
+* **Context Managers**
+  * ContextLib Module
+  * Custom Context Managers
+  * With Statement
+
+* **Control Flow**
+  * Elif
+  * If Else
+  * If Statements
+  * Nested Loops
+
+* **Data Structures and Algorithms**
+  * Advanced Data Structures
+  * Basic Concepts
+  * Big Data Handling
+  * Dynamic Programming
+  * Graph Algorithms
+  * Linked Lists
+  * Lists and Arrays
+  * Problem Solving
+  * Searching Algorithms
+  * Sorting Algorithms
+  * Stacks and Queues
+  * Trees
+
+* **Data Types**
+  * Collections Module
+  * Dictionaries
+  * Floats
+  * Lists
+  * NoneType
+  * Sets
+  * Strings
+  * Tuples
+
+* **Debugging**
+  * Performance Optimization
+
+* **Decorators**
+  * Function Decorators
+  * Property Decorators
+
+* **DefaultDict**
+  * DefaultDict Creation
+
+* **Dictionaries**
+  * Dictionary Comprehensions
+  * Dictionary Creation
+  * Dictionary Methods
+
+* **Environment Management**
+  * Deployment
+  * Virtualenv
+
+* **Error Handling**
+  * Custom Exceptions
+  * Exception Classes
+  * Finally
+  * Raise
+  * Try Except
+
+* **File I/O**
+  * CSV Handling
+  * Reading Files
+
+* **Flask**
+  * Routing
+
+* **Functions**
+  * Built-in Functions
+  * Defining Functions
+  * Function Arguments
+  * Higher Order Functions
+  * Lambda Functions
+  * Recursion
+  * Return Values
+
+* **Generators**
+  * Generator Expressions
+  * Iterators
+  * Yield Statement
+
+* **Lists**
+  * List Comprehension
+  * List Creation
+  * List Operations
+  * List Slicing and Indexing
+
+* **Loops**
+  * For Loop
+  * Loop Control Statements
+  * Nested Loops
+  * While Loop
+
+* **Machine Learning and Data Science**
+  * Basic Concepts
+  * Classification
+  * TensorFlow
+
+* **Memory Management**
+  * Garbage Collection
+  * Memoryview
+
+* **Metaprogramming**
+  * Introspection
+  * Metaclasses
+  * Monkey Patching
+
+* **Modules**
+  * Custom Modules
+  * Date and Time
+  * Importing Modules
+  * Regular Expressions
+  * Serialization
+  * Standard Library Modules
+  * __main__
+
+* **Multiprocessing**
+  * Inter-Process Communication (IPC)
+  * Process Module
+
+* **Multithreading**
+  * GIL
+  * Thread Pool
+  * Threading Module
+
+* **NamedTuple**
+  * NamedTuple Creation
+
+* **Networking**
+  * Database Operations
+
+* **NumPy**
+  * Array Manipulation
+  * Arrays
+  * Linear Algebra
+
+* **Object-Oriented Programming (OOP)**
+  * Abstraction
+  * Class Methods
+  * Classes
+  * Data Classes
+  * Design Patterns
+  * Encapsulation
+  * Function Overloading
+  * Inheritance
+  * OOP Concepts
+  * Objects
+  * Polymorphism
+  * Static Methods
+
+* **OS Operations**
+  * Binary Data
+  * OS Module
+  * Subprocess Module
+  * os.path
+  * pathlib
+
+* **Pandas**
+  * DataFrames
+  * Data Wrangling
+
+* **Profiling**
+  * cProfile
+
+* **Python Basics**
+  * Best Practices
+  * Installation
+  * Interpreted Language
+  * Language Comparisons
+  * Language Features
+  * Python Versions
+
+* **Python Libraries and Frameworks**
+  * Celery
+  * Pydantic
+  * SQLAlchemy
+
+* **REST APIs**
+  * JSON Serialization
+
+* **Sets**
+  * Set Creation
+  * Set Operations
+
+* **Syntax**
+  * Comments
+  * Expressions
+  * Indentation
+  * Statements
+
+* **Test Automation**
+  * CI/CD Integration
+
+* **Tuples**
+  * Tuple Creation
+  * Tuple Immutability
+  * Tuple Packing and Unpacking
+  * Use Cases
+
+* **Type Annotations**
+  * Typing
+
+* **Unit Testing**
+  * Pytest
+  * Unittest
+
+* **Variables**
+  * Global Variables
+  * Local Variables
+  * Nonlocal
+  * Variable Scope
+
+* **Web Scraping**
+  * Requests
+```
+
+**Example:**
+Input:
+How do you use list comprehensions in Python?
+What is the difference between a tuple and a list in Python?
+How do you handle exceptions in Python?
+
+Output:
+content,topic,subtopic,difficulty,language,framework,tool
+"How do you use list comprehensions in Python?",Lists,List_Comprehension,MEDIUM,PYTHON,NA,NA
+"What is the difference between a tuple and a list in Python?",Data_Types,NA,EASY,PYTHON,NA,NA
+"How do you handle exceptions in Python?",Error_Handling,Try_Except,MEDIUM,PYTHON,NA,NA
+"""

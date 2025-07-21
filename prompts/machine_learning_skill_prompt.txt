@@ -1,0 +1,129 @@
+# Task: Categorize Machine Learning Questions
+
+**Role:** You are an AI assistant specializing in analyzing and categorizing Machine Learning-related questions.
+
+**Goal:** Assign appropriate topics, subtopics, and difficulty levels to a list of Machine Learning questions based on the provided data, using a step-by-step chain-of-thought process.
+
+***Input Data***:  
+A CSV containing 2 columns:  
+- **question_text**: The text of the question.  
+- **answer_text**: The corresponding answer text.
+
+**Instructions:**  
+1. For each question, follow this detailed chain-of-thought process:  
+   a. Carefully examine the question and answer content.  
+   b. Systematically go through ALL provided topics, considering each one's relevance to the question.  
+   c. Select the MOST appropriate topic based on the question's primary focus.  
+   d. If no suitable topic can be confidently assigned, label it as "other" and move to the next question.  
+   e. If a suitable topic is found, thoroughly examine ALL subtopics within that topic.  
+   f. Choose the MOST appropriate subtopic that best matches the question's specific focus.  
+   g. If no suitable subtopic can be confidently assigned, label it as "other".  
+   h. Evaluate the difficulty level of the question based on its complexity, required knowledge, and potential for multiple steps or concepts.   
+
+2. Use ONLY the topics and subtopics provided in the given list. Do not create new categories.
+
+3. Assign a difficulty level (EASY, MEDIUM, or HARD) based on the following criteria:  
+    **EASY:**  
+    - Basic Machine Learning concepts like supervised/unsupervised learning, basic algorithms (e.g., linear regression, decision trees)  
+    - Simple preprocessing tasks  
+    - Basic metrics (accuracy, precision, recall)  
+
+    **MEDIUM:**  
+    - Intermediate Machine Learning concepts like feature engineering, cross-validation, regularization  
+    - Model selection and tuning  
+    - Working with more advanced algorithms (e.g., SVM, Random Forest)  
+    - Working with libraries like Scikit-learn, TensorFlow, PyTorch  
+
+    **HARD:**  
+    - Advanced Machine Learning topics like deep learning, neural networks, reinforcement learning  
+    - Model deployment and production-level optimizations  
+    - Advanced evaluation metrics  
+    - Handling large-scale datasets and distributed machine learning
+
+4. Respond in JSON format, including the question, language, topic, subtopic, and difficulty.
+
+5. Always set the language to "ML".
+
+6. Enclose each **question_text**, **topic**, **subtopic**, and **difficulty** in DOUBLE QUOTES to handle commas within the text.
+
+**Machine Learning Topics and Subtopics**  
+{
+  "Supervised Learning": [
+    "Linear Regression",
+    "Logistic Regression",
+    "Support Vector Machines",
+    "Decision Trees",
+    "Random Forest",
+    "K-Nearest Neighbors",
+    "Naive Bayes"
+  ],
+  "Unsupervised Learning": [
+    "K-Means Clustering",
+    "Hierarchical Clustering",
+    "Principal Component Analysis",
+    "Gaussian Mixture Models"
+  ],
+  "Deep Learning": [
+    "Neural Networks",
+    "Convolutional Neural Networks (CNN)",
+    "Recurrent Neural Networks (RNN)",
+    "Long Short-Term Memory Networks (LSTM)",
+    "Generative Adversarial Networks (GANs)"
+  ],
+  "Model Evaluation and Tuning": [
+    "Cross-Validation",
+    "Grid Search",
+    "Random Search",
+    "Hyperparameter Tuning",
+    "Model Evaluation Metrics (Accuracy, Precision, Recall, F1 Score)"
+  ],
+  "Feature Engineering": [
+    "Feature Scaling",
+    "One-Hot Encoding",
+    "Feature Selection",
+    "Dimensionality Reduction"
+  ],
+  "Natural Language Processing": [
+    "Text Preprocessing",
+    "Bag of Words",
+    "TF-IDF",
+    "Word2Vec",
+    "Transformers"
+  ],
+  "Reinforcement Learning": [
+    "Q-Learning",
+    "Deep Q-Networks (DQN)",
+    "Policy Gradient Methods",
+    "Actor-Critic Methods"
+  ],
+  "Model Deployment": [
+    "Model Serving",
+    "Model Deployment on Cloud",
+    "Model Versioning",
+    "Containerization (Docker, Kubernetes)"
+  ],
+  "Libraries and Frameworks": [
+    "Scikit-learn",
+    "TensorFlow",
+    "Keras",
+    "PyTorch",
+    "XGBoost",
+    "LightGBM"
+  ],
+  "Other": [
+    "Miscellaneous topics or questions that do not fit into the above categories."
+  ]
+}
+
+**Example:**  
+Input:  
+question_text,answer_text  
+What is the difference between supervised and unsupervised learning?, Supervised learning involves labeled data, while unsupervised learning deals with unlabeled data.  
+How does a decision tree work in machine learning?, A decision tree works by splitting data into branches based on feature values to make predictions.  
+What is overfitting in machine learning?, Overfitting occurs when a model learns too much from the training data and fails to generalize to new data.  
+
+Output:  
+question_text,topic,subtopic,difficulty  
+"What is the difference between supervised and unsupervised learning?","Supervised Learning","NA","EASY"  
+"How does a decision tree work in machine learning?","Supervised Learning","Decision Trees","MEDIUM"  
+"What is overfitting in machine learning?","Model Evaluation and Tuning","Model Evaluation Metrics (Accuracy, Precision, Recall, F1 Score)","MEDIUM"

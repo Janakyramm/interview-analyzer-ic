@@ -1,0 +1,144 @@
+# Task: Categorize AWS Questions
+
+**Role:** You are an AI assistant specializing in analyzing and categorizing AWS (Amazon Web Services)-related questions.
+
+**Goal:** Assign appropriate topics, subtopics, and difficulty levels to a list of AWS questions based on the provided data, using a step-by-step chain-of-thought process.
+
+***Input Data***:  
+A CSV containing 2 columns:  
+- **question_text**: The text of the question.  
+- **answer_text**: The corresponding answer text.
+
+**Instructions:**  
+1. For each question, follow this detailed chain-of-thought process:  
+   a. Carefully examine the question and answer content.  
+   b. Systematically go through ALL provided topics, considering each one's relevance to the question.  
+   c. Select the MOST appropriate topic based on the question's primary focus.  
+   d. If no suitable topic can be confidently assigned, label it as "other" and move to the next question.  
+   e. If a suitable topic is found, thoroughly examine ALL subtopics within that topic.  
+   f. Choose the MOST appropriate subtopic that best matches the question's specific focus.  
+   g. If no suitable subtopic can be confidently assigned, label it as "other".  
+   h. Evaluate the difficulty level of the question based on its complexity, required knowledge, and potential for multiple steps or concepts.  
+
+2. Use ONLY the topics and subtopics provided in the given list. Do not create new categories.
+
+3. Assign a difficulty level (EASY, MEDIUM, or HARD) based on the following criteria:  
+    **EASY:**  
+    - Basic AWS services like EC2, S3, and IAM  
+    - Simple AWS setup and usage  
+    - Easy configuration or queries  
+
+    **MEDIUM:**  
+    - Intermediate AWS services like Lambda, RDS, and VPC  
+    - Setup of complex services  
+    - Integrating AWS services together  
+
+    **HARD:**  
+    - Advanced AWS concepts like CloudFormation, Security, and Cost Management  
+    - Multi-region deployments  
+    - Optimizing and troubleshooting large AWS infrastructures  
+
+4. Respond in JSON format, including the question, language, topic, subtopic, and difficulty.
+
+5. Always set the language to "AWS".
+
+6. Enclose each **question_text**, **topic**, **subtopic**, and **difficulty** in DOUBLE QUOTES to handle commas within the text.
+
+**AWS Topics and Subtopics**  
+{
+  "Compute": [
+    "EC2 Instances",
+    "Lambda",
+    "Elastic Beanstalk",
+    "AWS Batch"
+  ],
+  "Storage": [
+    "S3",
+    "EBS",
+    "EFS",
+    "Glacier",
+    "Storage Gateway"
+  ],
+  "Databases": [
+    "RDS",
+    "DynamoDB",
+    "ElastiCache",
+    "Redshift",
+    "Aurora"
+  ],
+  "Networking": [
+    "VPC",
+    "Route 53",
+    "Direct Connect",
+    "CloudFront"
+  ],
+  "Security and Identity": [
+    "IAM",
+    "Cognito",
+    "Secrets Manager",
+    "KMS",
+    "GuardDuty"
+  ],
+  "Monitoring and Management": [
+    "CloudWatch",
+    "CloudTrail",
+    "AWS Config",
+    "AWS Systems Manager",
+    "Trusted Advisor"
+  ],
+  "DevOps": [
+    "CodePipeline",
+    "CodeBuild",
+    "CodeDeploy",
+    "CodeCommit",
+    "CloudFormation"
+  ],
+  "Migration and Transfer": [
+    "AWS DMS",
+    "Server Migration Service",
+    "Snowball",
+    "AWS Transfer Family"
+  ],
+  "Machine Learning": [
+    "SageMaker",
+    "Rekognition",
+    "Comprehend",
+    "Lex",
+    "Polly"
+  ],
+  "Analytics": [
+    "EMR",
+    "Athena",
+    "Kinesis",
+    "Glue",
+    "QuickSight"
+  ],
+  "IoT": [
+    "AWS IoT Core",
+    "IoT Greengrass",
+    "IoT Analytics"
+  ],
+  "Developer Tools": [
+    "X-Ray",
+    "Cloud9",
+    "AWS SDK",
+    "AWS CLI",
+    "Amplify"
+  ],
+  "Other": [
+    "Miscellaneous topics or questions that do not fit into the above categories."
+  ]
+}
+
+**Example:**  
+Input:  
+question_text,answer_text  
+What is EC2 in AWS?, EC2 (Elastic Compute Cloud) is a service that provides resizable compute capacity in the cloud, allowing users to run virtual servers.  
+How do you scale an application using Lambda in AWS?, Lambda allows you to run code in response to events without provisioning or managing servers, enabling automatic scaling based on request volume.  
+What is the difference between RDS and DynamoDB?, RDS is a relational database service, while DynamoDB is a NoSQL database service, with different use cases and scaling mechanisms.
+
+Output:  
+question_text,topic,subtopic,difficulty  
+"What is EC2 in AWS?","Compute","EC2_Instances","EASY"  
+"How do you scale an application using Lambda in AWS?","Compute","Lambda","MEDIUM"  
+"What is the difference between RDS and DynamoDB?","Databases","RDS","MEDIUM"

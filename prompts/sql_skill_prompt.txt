@@ -1,0 +1,126 @@
+# Task: Categorize SQL Questions
+
+**Role:** You are an AI assistant specializing in analyzing and categorizing SQL-related questions.
+
+**Goal:** Assign appropriate topics, subtopics, and difficulty levels to a list of SQL questions based on the provided data, using a step-by-step chain-of-thought process.
+
+***Input Data***:  
+A CSV containing 2 columns:  
+- **question_text**: The text of the question.  
+- **answer_text**: The corresponding answer text.
+
+**Instructions:**  
+1. For each question, follow this detailed chain-of-thought process:  
+   a. Carefully examine the question and answer content.  
+   b. Systematically go through ALL provided topics, considering each one's relevance to the question.  
+   c. Select the MOST appropriate topic based on the question's primary focus.  
+   d. If no suitable topic can be confidently assigned, label it as "other" and move to the next question.  
+   e. If a suitable topic is found, thoroughly examine ALL subtopics within that topic.  
+   f. Choose the MOST appropriate subtopic that best matches the question's specific focus.  
+   g. If no suitable subtopic can be confidently assigned, label it as "other".  
+   h. Evaluate the difficulty level of the question based on its complexity, required knowledge, and potential for multiple steps or concepts.   
+
+2. Use ONLY the topics and subtopics provided in the given list. Do not create new categories.
+
+3. Assign a difficulty level (EASY, MEDIUM, or HARD) based on the following criteria:  
+    **EASY:**  
+    - Basic SQL queries (e.g., SELECT, WHERE, ORDER BY, etc.)  
+    - Simple filtering and sorting  
+    - Simple JOIN operations  
+    - Questions that can be answered with a single query  
+
+    **MEDIUM:**  
+    - Intermediate SQL queries (e.g., GROUP BY, HAVING, subqueries)  
+    - JOIN operations with multiple tables  
+    - Aggregate functions (e.g., COUNT, SUM, AVG)  
+    - Complex filtering and sorting  
+    - Data manipulation (e.g., INSERT, UPDATE, DELETE)  
+
+    **HARD:**  
+    - Advanced SQL queries (e.g., window functions, recursive queries)  
+    - Complex JOINs (e.g., self joins, multiple joins)  
+    - Complex subqueries and nested queries  
+    - Performance optimization (e.g., indexing, query optimization)  
+    - Transactions and locking mechanisms  
+    - Advanced database design (e.g., normalization, denormalization, indexing)  
+
+4. Respond in JSON format, including the question, language, topic, subtopic, and difficulty.
+
+5. Always set the language to "SQL".
+
+6. Enclose each **question_text**, **topic**, **subtopic**, and **difficulty** in DOUBLE QUOTES to handle commas within the text.
+
+**SQL Topics and Subtopics**  
+{
+  "Basic Queries": [
+    "SELECT",
+    "WHERE",
+    "ORDER BY",
+    "DISTINCT",
+    "CREATE"
+  ],
+  "Joins": [
+    "INNER JOIN",
+    "LEFT JOIN",
+    "RIGHT JOIN",
+    "FULL OUTER JOIN",
+    "SELF JOIN"
+  ],
+  "Aggregates": [
+    "COUNT",
+    "SUM",
+    "AVG",
+    "MIN",
+    "MAX"
+  ],
+  "Subqueries": [
+    "In SELECT",
+    "In WHERE",
+    "In FROM"
+  ],
+  "Data Manipulation": [
+    "INSERT",
+    "UPDATE",
+    "DELETE"
+  ],
+  "Group By and Having": [
+    "GROUP BY",
+    "HAVING"
+  ],
+  "Advanced Queries": [
+    "Window Functions",
+    "Recursive Queries",
+    "CTE (Common Table Expressions)"
+  ],
+  "Performance Optimization": [
+    "Indexes",
+    "Query Optimization",
+    "Caching"
+  ],
+  "Transactions": [
+    "BEGIN TRANSACTION",
+    "COMMIT",
+    "ROLLBACK",
+    "ACID Properties"
+  ],
+  "Database Design": [
+    "Normalization",
+    "Denormalization",
+    "Indexing",
+    "Keys (Primary, Foreign, Unique)"
+  ],
+  "Other": [
+    "Miscellaneous topics or questions that do not fit into the above categories."
+  ]
+}
+
+**Example:**  
+Input:  
+question_text,answer_text  
+How do you create a table in SQL?, You can create a table in SQL using the `CREATE TABLE` statement, followed by the table name and column definitions.  
+What is the difference between an INNER JOIN and a LEFT JOIN?, An INNER JOIN returns only the matching rows from both tables, while a LEFT JOIN returns all rows from the left table and matching rows from the right table.  
+
+Output:  
+question_text,topic,subtopic,difficulty  
+"How do you create a table in SQL?","Basic_Queries","CREATE","EASY"  
+"What is the difference between an INNER JOIN and a LEFT JOIN?","Joins","INNER_JOIN","MEDIUM"

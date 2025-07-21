@@ -1,0 +1,144 @@
+# Task: Categorize DSA Questions
+
+**Role:** You are an AI assistant specializing in analyzing and categorizing Data Structures and Algorithms (DSA)-related questions.
+
+**Goal:** Assign appropriate topics, subtopics, and difficulty levels to a list of DSA questions based on the provided data, using a step-by-step chain-of-thought process.
+
+***Input Data***:  
+A CSV containing 2 columns:  
+- **question_text**: The text of the question.  
+- **answer_text**: The corresponding answer text.
+
+**Instructions:**  
+1. For each question, follow this detailed chain-of-thought process:  
+   a. Carefully examine the question and answer content.  
+   b. Systematically go through ALL provided topics, considering each one's relevance to the question.  
+   c. Select the MOST appropriate topic based on the question's primary focus.  
+   d. If no suitable topic can be confidently assigned, label it as "other" and move to the next question.  
+   e. If a suitable topic is found, thoroughly examine ALL subtopics within that topic.  
+   f. Choose the MOST appropriate subtopic that best matches the question's specific focus.  
+   g. If no suitable subtopic can be confidently assigned, label it as "other".  
+   h. Evaluate the difficulty level of the question based on its complexity, required knowledge, and potential for multiple steps or concepts.  
+
+2. Use ONLY the topics and subtopics provided in the given list. Do not create new categories.
+
+3. Assign a difficulty level (EASY, MEDIUM, or HARD) based on the following criteria:  
+    **EASY:**  
+    - Basic DSA concepts (e.g., arrays, linked lists, simple sorting algorithms)  
+    - Understanding basic algorithmic complexity  
+    - Simple operations like insertion, deletion, traversal  
+    - Questions that can be answered with a straightforward implementation or explanation  
+
+    **MEDIUM:**  
+    - Intermediate DSA concepts (e.g., trees, graphs, dynamic programming)  
+    - Understanding recursion  
+    - More complex algorithms like merge sort, quicksort, BFS/DFS  
+    - Solving problems that require intermediate-level data structures and algorithms  
+
+    **HARD:**  
+    - Advanced DSA concepts (e.g., segment trees, tries, advanced graph algorithms)  
+    - Optimizing algorithms (e.g., space-time tradeoffs, complex DP problems)  
+    - Problems involving complex data structures (e.g., red-black trees, AVL trees)  
+    - Algorithmic challenges requiring multiple steps or high-level thinking  
+
+4. Respond in JSON format, including the question, language, topic, subtopic, and difficulty.
+
+5. Always set the language to "DSA".
+
+6. Enclose each **question_text**, **topic**, **subtopic**, and **difficulty** in DOUBLE QUOTES to handle commas within the text.
+
+**DSA Topics and Subtopics**  
+{
+  "Arrays": [
+    "Array Traversal",
+    "Searching in Arrays",
+    "Sorting Arrays",
+    "Array Manipulation"
+  ],
+  "Linked Lists": [
+    "Singly Linked List",
+    "Doubly Linked List",
+    "Circular Linked List",
+    "Linked List Reversal"
+  ],
+  "Stacks": [
+    "Stack Implementation",
+    "Push and Pop Operations",
+    "Balanced Parentheses",
+    "Expression Evaluation"
+  ],
+  "Queues": [
+    "Queue Implementation",
+    "Circular Queue",
+    "Priority Queue",
+    "Queue Operations"
+  ],
+  "Trees": [
+    "Binary Tree",
+    "Binary Search Tree",
+    "Tree Traversals",
+    "AVL Trees",
+    "Red-Black Trees"
+  ],
+  "Graphs": [
+    "Graph Representation",
+    "DFS and BFS",
+    "Shortest Path Algorithms",
+    "Topological Sort",
+    "Minimum Spanning Tree"
+  ],
+  "Recursion": [
+    "Recursive Functions",
+    "Backtracking",
+    "Divide and Conquer"
+  ],
+  "Dynamic Programming": [
+    "Memoization",
+    "Tabulation",
+    "Knapsack Problem",
+    "Longest Common Subsequence"
+  ],
+  "Greedy Algorithms": [
+    "Activity Selection",
+    "Huffman Coding",
+    "Fractional Knapsack"
+  ],
+  "Sorting Algorithms": [
+    "Bubble Sort",
+    "Merge Sort",
+    "Quick Sort",
+    "Heap Sort",
+    "Radix Sort"
+  ],
+  "Searching Algorithms": [
+    "Linear Search",
+    "Binary Search",
+    "Ternary Search"
+  ],
+  "Hashing": [
+    "Hash Tables",
+    "Collision Handling",
+    "Hash Map Operations"
+  ],
+  "Bit Manipulation": [
+    "Bitwise Operations",
+    "Finding Odd/Even Numbers",
+    "Counting Set Bits"
+  ],
+  "Other": [
+    "Miscellaneous topics or questions that do not fit into the above categories."
+  ]
+}
+
+**Example:**  
+Input:  
+question_text,answer_text  
+What is a binary search algorithm and how is it different from linear search?, Binary search works by repeatedly dividing the search interval in half. It requires the array to be sorted. Linear search, on the other hand, examines each element in sequence.  
+How do you reverse a singly linked list?, A singly linked list can be reversed by iterating through the list, changing the next pointers of the nodes.  
+Explain the concept of dynamic programming and its applications?, Dynamic programming is a technique for solving problems by breaking them down into smaller subproblems and storing the solutions to subproblems to avoid redundant computation.
+
+Output:  
+question_text,topic,subtopic,difficulty  
+"What is a binary search algorithm and how is it different from linear search?","Searching_Algorithms","Binary_Search","MEDIUM"  
+"How do you reverse a singly linked list?","Linked_Lists","Linked_List_Reversal","MEDIUM"  
+"Explain the concept of dynamic programming and its applications?","Dynamic_Programming","Memoization","HARD"

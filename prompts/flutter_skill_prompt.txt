@@ -1,0 +1,134 @@
+# Task: Categorize Flutter Questions
+
+**Role:** You are an AI assistant specializing in analyzing and categorizing Flutter-related questions.
+
+**Goal:** Assign appropriate topics, subtopics, and difficulty levels to a list of Flutter questions based on the provided data, using a step-by-step chain-of-thought process.
+
+***Input Data***:  
+A CSV containing 2 columns:  
+- **question_text**: The text of the question.  
+- **answer_text**: The corresponding answer text.
+
+**Instructions:**  
+1. For each question, follow this detailed chain-of-thought process:  
+   a. Carefully examine the question and answer content.  
+   b. Systematically go through ALL provided topics, considering each one's relevance to the question.  
+   c. Select the MOST appropriate topic based on the question's primary focus.  
+   d. If no suitable topic can be confidently assigned, label it as "other" and move to the next question.  
+   e. If a suitable topic is found, thoroughly examine ALL subtopics within that topic.  
+   f. Choose the MOST appropriate subtopic that best matches the question's specific focus.  
+   g. If no suitable subtopic can be confidently assigned, label it as "other".  
+   h. Evaluate the difficulty level of the question based on its complexity, required knowledge, and potential for multiple steps or concepts.   
+
+2. Use ONLY the topics and subtopics provided in the given list. Do not create new categories.
+
+3. Assign a difficulty level (EASY, MEDIUM, or HARD) based on the following criteria:  
+    **EASY:**  
+    - Basic Flutter concepts (e.g., Widgets, basic layout)  
+    - Simple state management (e.g., setState)  
+    - Questions that can be answered with a single line of code or a simple example  
+
+    **MEDIUM:**  
+    - Intermediate Flutter concepts (e.g., Custom Widgets, Navigation)  
+    - Working with forms  
+    - Advanced state management (e.g., Provider, Riverpod)  
+    - Managing routes and navigation  
+    - Flutter animations  
+
+    **HARD:**  
+    - Advanced Flutter concepts (e.g., Streams, RxDart)  
+    - Performance optimization in Flutter  
+    - Complex state management (e.g., Bloc, Redux)  
+    - Flutter testing (unit tests, widget tests, integration tests)  
+    - Platform channels and native integrations  
+    - Building and optimizing complex UI components  
+
+4. Respond in JSON format, including the question, language, topic, subtopic, and difficulty.
+
+5. Always set the language to "FLUTTER".
+
+6. Enclose each **question_text**, **topic**, **subtopic**, and **difficulty** in DOUBLE QUOTES to handle commas within the text.
+
+**Flutter Topics and Subtopics**  
+{
+  "Flutter Basics": [
+    "Widgets",
+    "Stateful vs Stateless Widgets",
+    "Layouts (Row, Column, Stack, etc.)",
+    "Basic Input/Output Widgets",
+    "Flutter App Structure"
+  ],
+  "State Management": [
+    "setState",
+    "InheritedWidget",
+    "Provider",
+    "Riverpod",
+    "BLoC Pattern",
+    "Redux"
+  ],
+  "Flutter Navigation": [
+    "Navigator",
+    "Named Routes",
+    "Route Parameters",
+    "Nested Navigation"
+  ],
+  "Flutter UI Components": [
+    "Material Widgets",
+    "Cupertino Widgets",
+    "Custom Widgets",
+    "Flutter Animations",
+    "Flutter Icons",
+    "Flutter Themes"
+  ],
+  "Asynchronous Programming": [
+    "Future",
+    "Streams",
+    "Async/Await",
+    "Dart Isolates"
+  ],
+  "Flutter Testing": [
+    "Unit Testing",
+    "Widget Testing",
+    "Integration Testing",
+    "Mockito"
+  ],
+  "Flutter Performance Optimization": [
+    "Efficient Rendering",
+    "Lazy Loading",
+    "State Management Optimization",
+    "Flutter DevTools"
+  ],
+  "Flutter Plugins and Packages": [
+    "Using Packages from pub.dev",
+    "Custom Plugins",
+    "Native Integrations (Platform Channels)"
+  ],
+  "Flutter Advanced Concepts": [
+    "Flutter Web",
+    "Flutter Desktop",
+    "Flutter for Embedded Systems",
+    "Flutter Engine Internals"
+  ],
+  "Flutter Debugging and Tools": [
+    "Flutter DevTools",
+    "Debugging Flutter Apps",
+    "Hot Reload/Hot Restart",
+    "Dart Observatory"
+  ],
+  "Other": [
+    "Miscellaneous topics or questions that do not fit into the above categories."
+  ]
+}
+
+**Example:**  
+Input:  
+question_text,answer_text  
+How do you create a custom widget in Flutter?, In Flutter, a custom widget can be created by extending either StatelessWidget or StatefulWidget and implementing the build() method.  
+What is the difference between a Stateful and Stateless widget?, A Stateful widget maintains its state over time, while a Stateless widget cannot change its state once built.  
+How can I use provider for state management in Flutter?, To use the Provider package, you wrap your widget tree with a `ChangeNotifierProvider` and access the state using `Provider.of()` or `Consumer`.  
+
+Output:  
+question_text,topic,subtopic,difficulty  
+"How do you create a custom widget in Flutter?","Flutter_Basics","Custom_Widgets","MEDIUM"  
+"What is the difference between a Stateful and Stateless widget?","Flutter_Basics","Stateful_vs_Stateless_Widgets","EASY"  
+"How can I use provider for state management in Flutter?","State_Management","Provider","MEDIUM"

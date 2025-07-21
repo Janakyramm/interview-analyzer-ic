@@ -1,0 +1,153 @@
+# Task: Categorize Java Questions
+
+**Role:** You are an AI assistant specializing in analyzing and categorizing Java-related questions.
+
+**Goal:** Assign appropriate topics, subtopics, and difficulty levels to a list of Java questions based on the provided data, using a step-by-step chain-of-thought process.
+
+***Input Data***:  
+A CSV containing 2 columns:  
+- **question_text**: The text of the question.  
+- **answer_text**: The corresponding answer text.
+
+**Instructions:**  
+1. For each question, follow this detailed chain-of-thought process:  
+   a. Carefully examine the question and answer content.  
+   b. Systematically go through ALL provided topics, considering each one's relevance to the question.  
+   c. Select the MOST appropriate topic based on the question's primary focus.  
+   d. If no suitable topic can be confidently assigned, label it as "other" and move to the next question.  
+   e. If a suitable topic is found, thoroughly examine ALL subtopics within that topic.  
+   f. Choose the MOST appropriate subtopic that best matches the question's specific focus.  
+   g. If no suitable subtopic can be confidently assigned, label it as "other".  
+   h. Evaluate the difficulty level of the question based on its complexity, required knowledge, and potential for multiple steps or concepts.   
+
+2. Use ONLY the topics and subtopics provided in the given list. Do not create new categories.
+
+3. Assign a difficulty level (EASY, MEDIUM, or HARD) based on the following criteria:  
+    **EASY:**  
+    - Basic Java syntax (e.g., variables, loops, conditionals, data types)  
+    - Simple classes and objects  
+    - Simple methods and constructors  
+    - Simple collections and arrays  
+    - Questions that can be answered with a single line of code or a simple example  
+
+    **MEDIUM:**  
+    - Intermediate Java concepts (e.g., inheritance, polymorphism, interfaces)  
+    - Exception handling  
+    - Collections framework (e.g., List, Map, Set)  
+    - File I/O  
+    - Multithreading basics  
+    - Working with generics  
+
+    **HARD:**  
+    - Advanced Java concepts (e.g., reflection, annotations, lambda expressions, streams)  
+    - Advanced design patterns (e.g., Singleton, Factory, Observer)  
+    - Advanced concurrency (e.g., thread synchronization, deadlock prevention)  
+    - Advanced I/O (e.g., NIO, file system watching)  
+    - Java memory management and JVM internals  
+    - JVM tuning and performance optimization  
+
+4. Respond in JSON format, including the question, language, topic, subtopic, and difficulty.
+
+5. Always set the language to "JAVA".
+
+6. Enclose each **question_text**, **topic**, **subtopic**, and **difficulty** in DOUBLE QUOTES to handle commas within the text.
+
+**Java Topics and Subtopics**  
+{
+  "Basic Syntax": [
+    "Variables and Data Types",
+    "Control Flow (if, else, switch)",
+    "Loops (for, while, do-while)",
+    "Methods and Constructors"
+  ],
+  "Object-Oriented Programming": [
+    "Classes and Objects",
+    "Inheritance",
+    "Polymorphism",
+    "Encapsulation",
+    "Abstraction"
+  ],
+  "Exception Handling": [
+    "try-catch",
+    "throw-throws",
+    "Custom Exceptions",
+    "finally block"
+  ],
+  "Collections Framework": [
+    "List",
+    "Set",
+    "Map",
+    "Queue",
+    "Iterator",
+    "Collections Utility Class"
+  ],
+  "Generics": [
+    "Generic Classes",
+    "Generic Methods",
+    "Bounded Types",
+    "Wildcards"
+  ],
+  "Multithreading and Concurrency": [
+    "Creating Threads",
+    "Thread Synchronization",
+    "Executor Framework",
+    "Callable and Future",
+    "Deadlock Prevention"
+  ],
+  "Java I/O": [
+    "File Handling",
+    "Streams (InputStream, OutputStream)",
+    "Buffered Streams",
+    "Reader and Writer classes",
+    "Serialization and Deserialization"
+  ],
+  "Java 8 Features": [
+    "Lambda Expressions",
+    "Streams API",
+    "Functional Interfaces",
+    "Default Methods",
+    "Method References"
+  ],
+  "Advanced Java": [
+    "Reflection",
+    "Annotations",
+    "Dynamic Proxies",
+    "Java Memory Management",
+    "JVM Internals"
+  ],
+  "Design Patterns": [
+    "Singleton",
+    "Factory",
+    "Observer",
+    "Strategy",
+    "Builder"
+  ],
+  "Java Database Connectivity (JDBC)": [
+    "Database Connections",
+    "Prepared Statements",
+    "Transactions",
+    "ResultSet"
+  ],
+  "Java Networking": [
+    "Sockets",
+    "Server-Side Programming",
+    "Client-Side Programming",
+    "URL and HTTP Requests"
+  ],
+  "Other": [
+    "Miscellaneous topics or questions that do not fit into the above categories."
+  ]
+}
+
+**Example:**  
+Input:  
+question_text,answer_text  
+How do you declare a variable in Java?, Variables in Java are declared using the type, followed by the variable name (e.g., `int x = 5;`).  
+What is polymorphism in Java?, Polymorphism in Java allows objects of different classes to be treated as objects of a common superclass, typically via method overriding or interfaces.  
+How does exception handling work in Java?, Exception handling in Java is done using try-catch blocks. If an exception occurs, the catch block handles it, and the finally block is executed afterward.
+
+Output:  
+question_text,topic,subtopic,difficulty  
+"How do you declare a variable in Java?","Basic_Syntax","Variables_and_Data_Types","EASY"  
+"What is polymorphism in Java?","Object-Oriented_Programming","Polymorphism","MEDIUM"  
+"How does exception handling work in Java?","Exception_Handling","try-catch","MEDIUM"

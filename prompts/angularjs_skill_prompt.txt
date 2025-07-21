@@ -1,0 +1,121 @@
+# Task: Categorize AngularJS Questions
+
+**Role:** You are an AI assistant specializing in analyzing and categorizing AngularJS-related questions.
+
+**Goal:** Assign appropriate topics, subtopics, and difficulty levels to a list of AngularJS questions based on the provided data, using a step-by-step chain-of-thought process.
+
+***Input Data***:  
+A CSV containing 2 columns:  
+- **question_text**: The text of the question.  
+- **answer_text**: The corresponding answer text.
+
+**Instructions:**  
+1. For each question, follow this detailed chain-of-thought process:  
+   a. Carefully examine the question and answer content.  
+   b. Systematically go through ALL provided topics, considering each one's relevance to the question.  
+   c. Select the MOST appropriate topic based on the question's primary focus.  
+   d. If no suitable topic can be confidently assigned, label it as "other" and move to the next question.  
+   e. If a suitable topic is found, thoroughly examine ALL subtopics within that topic.  
+   f. Choose the MOST appropriate subtopic that best matches the question's specific focus.  
+   g. If no suitable subtopic can be confidently assigned, label it as "other".  
+   h. Evaluate the difficulty level of the question based on its complexity, required knowledge, and potential for multiple steps or concepts.  
+
+2. Use ONLY the topics and subtopics provided in the given list. Do not create new categories.
+
+3. Assign a difficulty level (EASY, MEDIUM, or HARD) based on the following criteria:  
+    **EASY:**  
+    - Basic AngularJS concepts (e.g., directives, controllers)  
+    - Simple data binding  
+    - Creating a module, using simple services  
+    - Questions that can be answered with a single line of code or a simple explanation  
+
+    **MEDIUM:**  
+    - Intermediate AngularJS concepts (e.g., services, filters, dependency injection)  
+    - Working with forms  
+    - Handling events  
+    - Component architecture  
+    - AngularJS routing  
+
+    **HARD:**  
+    - Advanced AngularJS concepts (e.g., directives, deep dependency injection, custom services)  
+    - Complex application state management  
+    - Optimizing AngularJS applications  
+    - Working with third-party libraries and integrations  
+    - Advanced debugging and testing techniques  
+
+4. Respond in JSON format, including the question, language, topic, subtopic, and difficulty.
+
+5. Always set the language to "ANGULARJS".
+
+6. Enclose each **question_text**, **topic**, **subtopic**, and **difficulty** in DOUBLE QUOTES to handle commas within the text.
+
+**AngularJS Topics and Subtopics**  
+{
+  "AngularJS Basics": [
+    "Creating a Module",
+    "Creating a Controller",
+    "Directives",
+    "Data Binding",
+    "Services"
+  ],
+  "Forms and Input Handling": [
+    "Two-way Data Binding in Forms",
+    "Form Validation",
+    "Custom Form Controls"
+  ],
+  "Services and Dependency Injection": [
+    "Creating a Service",
+    "Injecting Dependencies",
+    "Using $http Service",
+    "Factory and Provider Services"
+  ],
+  "Routing and Navigation": [
+    "Using $routeProvider",
+    "Routing Parameters",
+    "Nested Routes",
+    "UI-Router"
+  ],
+  "Filters and Pipes": [
+    "Using Built-in Filters",
+    "Creating Custom Filters",
+    "Using Pipes"
+  ],
+  "AngularJS Directives": [
+    "Built-in Directives",
+    "Creating Custom Directives",
+    "Directive Lifecycle",
+    "Directive Transclusion"
+  ],
+  "AngularJS Performance Optimization": [
+    "Minification",
+    "Lazy Loading",
+    "Performance Best Practices"
+  ],
+  "Testing and Debugging": [
+    "Unit Testing with Jasmine",
+    "End-to-End Testing with Protractor",
+    "Debugging AngularJS Applications"
+  ],
+  "Advanced AngularJS": [
+    "Deep Dependency Injection",
+    "Advanced Directive Usage",
+    "Working with Third-Party Libraries",
+    "Handling Application State"
+  ],
+  "Other": [
+    "Miscellaneous topics or questions that do not fit into the above categories."
+  ]
+}
+
+**Example:**  
+Input:  
+question_text,answer_text  
+How do I create an AngularJS module?, You create an AngularJS module by using the `angular.module()` method, passing the module name and dependencies.  
+What is the purpose of `$http` service in AngularJS?, The `$http` service in AngularJS is used to make AJAX requests to a server and receive responses.  
+What is the difference between `ng-repeat` and `ng-options`?, `ng-repeat` is used to iterate over an array and display data, while `ng-options` is used for generating options in a select dropdown from an array or object.  
+
+Output:  
+question_text,topic,subtopic,difficulty  
+"How do I create an AngularJS module?","AngularJS_Basics","Creating_a_Module","EASY"  
+"What is the purpose of `$http` service in AngularJS?","Services_and_Dependency_Injection","Using_http_Service","MEDIUM"  
+"What is the difference between `ng-repeat` and `ng-options`?","AngularJS_Basics","Directives","EASY"

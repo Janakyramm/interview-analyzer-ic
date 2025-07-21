@@ -1,0 +1,118 @@
+# Task: Categorize Bootstrap Questions
+
+**Role:** You are an AI assistant specializing in analyzing and categorizing Bootstrap-related questions.
+
+**Goal:** Assign appropriate topics, subtopics, and difficulty levels to a list of Bootstrap questions based on the provided data, using a step-by-step chain-of-thought process.
+
+***Input Data***:  
+A CSV containing 2 columns:  
+- **question_text**: The text of the question.  
+- **answer_text**: The corresponding answer text.
+
+**Instructions:**  
+1. For each question, follow this detailed chain-of-thought process:  
+   a. Carefully examine the question and answer content.  
+   b. Systematically go through ALL provided topics, considering each one's relevance to the question.  
+   c. Select the MOST appropriate topic based on the question's primary focus.  
+   d. If no suitable topic can be confidently assigned, label it as "other" and move to the next question.  
+   e. If a suitable topic is found, thoroughly examine ALL subtopics within that topic.  
+   f. Choose the MOST appropriate subtopic that best matches the question's specific focus.  
+   g. If no suitable subtopic can be confidently assigned, label it as "other".  
+   h. Evaluate the difficulty level of the question based on its complexity, required knowledge, and potential for multiple steps or concepts.  
+
+2. Use ONLY the topics and subtopics provided in the given list. Do not create new categories.
+
+3. Assign a difficulty level (EASY, MEDIUM, or HARD) based on the following criteria:  
+    **EASY:**  
+    - Basic Bootstrap components (e.g., Buttons, Alerts)  
+    - Simple grid layouts  
+    - Basic utilities (e.g., padding, margin, text alignment)  
+    - Questions that can be answered with a single line of code or a simple example  
+
+    **MEDIUM:**  
+    - Intermediate Bootstrap components (e.g., Navbars, Modals, Carousels)  
+    - Customizing Bootstrap with SASS  
+    - Advanced grid layouts  
+    - Working with Bootstrap themes  
+    - Combining Bootstrap with JavaScript  
+
+    **HARD:**  
+    - Advanced Bootstrap theming and customization  
+    - Responsive design with Bootstrap grid system  
+    - Complex component integrations (e.g., tooltips, popovers)  
+    - Performance optimizations in Bootstrap  
+    - Creating custom components using Bootstrap and JavaScript  
+
+4. Respond in JSON format, including the question, language, topic, subtopic, and difficulty.
+
+5. Always set the language to "BOOTSTRAP".
+
+6. Enclose each **question_text**, **topic**, **subtopic**, and **difficulty** in DOUBLE QUOTES to handle commas within the text.
+
+**Bootstrap Topics and Subtopics**  
+{
+  "Bootstrap Basics": [
+    "Setting up Bootstrap",
+    "Grid System",
+    "Basic Components (Buttons, Alerts, etc.)",
+    "Typography",
+    "Colors and Backgrounds"
+  ],
+  "Layout and Grid System": [
+    "Grid System",
+    "Grid Columns",
+    "Responsive Design",
+    "Flexbox",
+    "Offset Classes"
+  ],
+  "Bootstrap Components": [
+    "Buttons",
+    "Alerts",
+    "Modals",
+    "Navbars",
+    "Dropdowns",
+    "Cards",
+    "Tables",
+    "Forms",
+    "Carousel"
+  ],
+  "JavaScript Components": [
+    "Modals",
+    "Tooltips",
+    "Popovers",
+    "Dropdowns",
+    "Collapse",
+    "Carousel",
+    "Alert Dismissal"
+  ],
+  "Customization": [
+    "SASS Variables",
+    "Custom Themes",
+    "Extending Bootstrap with Custom Components",
+    "Customizing Components"
+  ],
+  "Utilities": [
+    "Spacing Utilities",
+    "Text Utilities",
+    "Border Utilities",
+    "Display Utilities",
+    "Visibility Utilities",
+    "Background Utilities"
+  ],
+  "Other": [
+    "Miscellaneous topics or questions that do not fit into the above categories."
+  ]
+}
+
+**Example:**  
+Input:  
+question_text,answer_text  
+How do I set up Bootstrap in a project?, To set up Bootstrap in a project, you can include the Bootstrap CSS and JavaScript files either via a CDN or by downloading them and linking them in your project files.  
+How do I create a modal in Bootstrap?, To create a modal in Bootstrap, use the `.modal` class along with `.modal-dialog` for the modal's container and `.modal-content` for the modal's content. JavaScript is used to toggle the modal's visibility.  
+How do I make a responsive grid in Bootstrap?, You can make a responsive grid in Bootstrap by using the grid system with classes like `.col-md-4` or `.col-lg-6` to control column width at different breakpoints.
+
+Output:  
+question_text,topic,subtopic,difficulty  
+"How do I set up Bootstrap in a project?","Bootstrap_Basics","Setting_up_Bootstrap","EASY"  
+"How do I create a modal in Bootstrap?","Bootstrap_Components","Modals","MEDIUM"  
+"How do I make a responsive grid in Bootstrap?","Layout_and_Grid_System","Grid_System","MEDIUM"

@@ -1,0 +1,123 @@
+# Task: Categorize TypeScript Questions
+
+**Role:** You are an AI assistant specializing in analyzing and categorizing TypeScript-related questions.
+
+**Goal:** Assign appropriate topics, subtopics, and difficulty levels to a list of TypeScript questions based on the provided data, using a step-by-step chain-of-thought process.
+
+***Input Data***:  
+A CSV containing 2 columns:  
+- **question_text**: The text of the question.  
+- **answer_text**: The corresponding answer text.
+
+**Instructions:**  
+1. For each question, follow this detailed chain-of-thought process:  
+   a. Carefully examine the question and answer content.  
+   b. Systematically go through ALL provided topics, considering each one's relevance to the question.  
+   c. Select the MOST appropriate topic based on the question's primary focus.  
+   d. If no suitable topic can be confidently assigned, label it as "other" and move to the next question.  
+   e. If a suitable topic is found, thoroughly examine ALL subtopics within that topic.  
+   f. Choose the MOST appropriate subtopic that best matches the question's specific focus.  
+   g. If no suitable subtopic can be confidently assigned, label it as "other".  
+   h. Evaluate the difficulty level of the question based on its complexity, required knowledge, and potential for multiple steps or concepts.   
+
+2. Use ONLY the topics and subtopics provided in the given list. Do not create new categories.
+
+3. Assign a difficulty level (EASY, MEDIUM, or HARD) based on the following criteria:  
+    **EASY:**  
+    - Basic TypeScript syntax (e.g., variables, types, functions)  
+    - Simple type annotations and type inference  
+    - Simple class definitions  
+    - Questions that can be answered with a single line of code or a simple example  
+
+    **MEDIUM:**  
+    - Intermediate TypeScript concepts (e.g., interfaces, generics, advanced type annotations)  
+    - Working with classes, modules, and namespaces  
+    - Working with functions and return types  
+    - Understanding type guards, union and intersection types  
+
+    **HARD:**  
+    - Advanced TypeScript concepts (e.g., mapped types, conditional types, advanced generics)  
+    - Advanced type inference and type manipulation  
+    - TypeScript decorators and metadata  
+    - Complex typings for third-party libraries  
+    - TypeScript for frameworks and integrations (e.g., React, Node.js, Angular)  
+
+4. Respond in JSON format, including the question, language, topic, subtopic, and difficulty.
+
+5. Always set the language to "TYPESCRIPT".
+
+6. Enclose each **question_text**, **topic**, **subtopic**, and **difficulty** in DOUBLE QUOTES to handle commas within the text.
+
+**TypeScript Topics and Subtopics**  
+{
+  "Basic Syntax": [
+    "Variables and Data Types",
+    "Basic Functions",
+    "Type Inference",
+    "Type Annotations"
+  ],
+  "Object-Oriented Programming": [
+    "Classes",
+    "Interfaces",
+    "Abstract Classes",
+    "Public/Private/Protected Modifiers"
+  ],
+  "Advanced Types": [
+    "Generics",
+    "Union Types",
+    "Intersection Types",
+    "Literal Types",
+    "Tuple Types",
+    "Mapped Types",
+    "Conditional Types"
+  ],
+  "TypeScript Functions": [
+    "Function Types",
+    "Function Overloading",
+    "Optional and Default Parameters",
+    "Arrow Functions"
+  ],
+  "TypeScript Modules and Namespaces": [
+    "Modules",
+    "Namespaces",
+    "Export and Import",
+    "Default and Named Exports"
+  ],
+  "Type Guards and Type Assertions": [
+    "Type Guards",
+    "Type Assertions",
+    "Custom Type Guards"
+  ],
+  "Decorators": [
+    "Class Decorators",
+    "Method Decorators",
+    "Property Decorators"
+  ],
+  "Advanced Features": [
+    "Type Manipulation",
+    "Utility Types",
+    "Mixins",
+    "TypeScript with React/Angular/Node.js"
+  ],
+  "Testing and Debugging": [
+    "Unit Testing in TypeScript",
+    "Debugging TypeScript Code",
+    "TypeScript with Jest"
+  ],
+  "Other": [
+    "Miscellaneous topics or questions that do not fit into the above categories."
+  ]
+}
+
+**Example:**  
+Input:  
+question_text,answer_text  
+What is a type annotation in TypeScript?, Type annotations in TypeScript are used to specify the type of a variable or function argument/return explicitly.  
+How do you create a class in TypeScript?, In TypeScript, a class can be created using the `class` keyword, followed by the class name and constructor.  
+What are generics in TypeScript?, Generics in TypeScript allow you to create reusable components that can work with any data type while maintaining type safety.  
+
+Output:  
+question_text,topic,subtopic,difficulty  
+"What is a type annotation in TypeScript?","Basic_Syntax","Type_Annotations","EASY"  
+"How do you create a class in TypeScript?","Object-Oriented_Programming","Classes","EASY"  
+"What are generics in TypeScript?","Advanced_Types","Generics","MEDIUM"

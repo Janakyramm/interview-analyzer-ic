@@ -1,0 +1,136 @@
+# Task: Categorize Power BI Questions
+
+**Role:** You are an AI assistant specializing in analyzing and categorizing Power BI-related questions.
+
+**Goal:** Assign appropriate topics, subtopics, and difficulty levels to a list of Power BI questions based on the provided data, using a step-by-step chain-of-thought process.
+
+***Input Data***:  
+A CSV containing 2 columns:  
+- **question_text**: The text of the question.  
+- **answer_text**: The corresponding answer text.
+
+**Instructions:**  
+1. For each question, follow this detailed chain-of-thought process:  
+   a. Carefully examine the question and answer content.  
+   b. Systematically go through ALL provided topics, considering each one's relevance to the question.  
+   c. Select the MOST appropriate topic based on the question's primary focus.  
+   d. If no suitable topic can be confidently assigned, label it as "other" and move to the next question.  
+   e. If a suitable topic is found, thoroughly examine ALL subtopics within that topic.  
+   f. Choose the MOST appropriate subtopic that best matches the question's specific focus.  
+   g. If no suitable subtopic can be confidently assigned, label it as "other".  
+   h. Evaluate the difficulty level of the question based on its complexity, required knowledge, and potential for multiple steps or concepts.   
+
+2. Use ONLY the topics and subtopics provided in the given list. Do not create new categories.
+
+3. Assign a difficulty level (EASY, MEDIUM, or HARD) based on the following criteria:  
+    **EASY:**  
+    - Basic Power BI concepts (e.g., creating reports, simple visualizations)  
+    - Basic calculations (e.g., SUM, COUNT)  
+    - Simple data transformations in Power Query  
+    - Questions that can be answered with a single line of code or a simple example  
+
+    **MEDIUM:**  
+    - Intermediate Power BI concepts (e.g., DAX, relationships between tables)  
+    - Working with Power Query  
+    - Creating interactive reports  
+    - Using complex visuals (e.g., maps, tree maps)  
+    - Intermediate data modeling and relationships  
+
+    **HARD:**  
+    - Advanced Power BI concepts (e.g., complex DAX measures, time intelligence)  
+    - Advanced data modeling (e.g., Star Schema, Snowflake Schema)  
+    - Performance optimization in Power BI  
+    - Power BI Service and deployment  
+    - Integrating Power BI with other services (e.g., Azure, SharePoint)  
+    - Power BI Security (Row-Level Security, Permissions)  
+
+4. Respond in JSON format, including the question, language, topic, subtopic, and difficulty.
+
+5. Always set the language to "POWER_BI".
+
+6. Enclose each **question_text**, **topic**, **subtopic**, and **difficulty** in DOUBLE QUOTES to handle commas within the text.
+
+**Power BI Topics and Subtopics**  
+{
+  "Power BI Basics": [
+    "Creating Reports",
+    "Creating Dashboards",
+    "Power BI Desktop vs Power BI Service",
+    "Working with Visuals"
+  ],
+  "Power Query": [
+    "Data Loading",
+    "Data Transformation",
+    "M Query",
+    "Column and Table Operations"
+  ],
+  "Data Modeling": [
+    "Relationships",
+    "Star Schema",
+    "Snowflake Schema",
+    "Normalization and Denormalization",
+    "Data Model Optimization"
+  ],
+  "DAX (Data Analysis Expressions)": [
+    "Basic DAX Calculations",
+    "SUM, COUNT, AVERAGE",
+    "Conditional Calculations (IF, SWITCH)",
+    "Time Intelligence",
+    "Measures vs Calculated Columns",
+    "Advanced DAX (CALCULATE, FILTER)"
+  ],
+  "Visualizations": [
+    "Bar/Column Charts",
+    "Line/Area Charts",
+    "Pie/Donut Charts",
+    "Maps",
+    "Tree Maps",
+    "Custom Visuals"
+  ],
+  "Power BI Service": [
+    "Publishing Reports",
+    "Sharing and Collaboration",
+    "Power BI Workspace",
+    "Power BI Apps"
+  ],
+  "Power BI Security": [
+    "Row-Level Security",
+    "Permissions",
+    "Workspace Security",
+    "Data Protection"
+  ],
+  "Power BI Performance Optimization": [
+    "Data Model Optimization",
+    "Visual Optimization",
+    "Query Performance"
+  ],
+  "Power BI Integration": [
+    "Power BI and Azure",
+    "Power BI and SharePoint",
+    "Power BI and Excel",
+    "Power BI and SQL Server"
+  ],
+  "Advanced Power BI": [
+    "Custom Visuals",
+    "Power BI API",
+    "Advanced DAX Measures",
+    "Power BI and Python",
+    "Power BI and R"
+  ],
+  "Other": [
+    "Miscellaneous topics or questions that do not fit into the above categories."
+  ]
+}
+
+**Example:**  
+Input:  
+question_text,answer_text  
+How do I create a bar chart in Power BI?, In Power BI, a bar chart can be created by selecting the bar chart icon from the Visualizations pane and dragging the necessary fields into the axis and value sections.  
+What is DAX in Power BI?, DAX (Data Analysis Expressions) is a formula language used to define custom calculations and aggregations in Power BI.  
+How do I implement row-level security in Power BI?, Row-level security in Power BI can be implemented by defining roles and permissions in Power BI Desktop and then applying them in the Power BI Service.  
+
+Output:  
+question_text,topic,subtopic,difficulty  
+"How do I create a bar chart in Power BI?","Visualizations","Bar_Column_Charts","EASY"  
+"What is DAX in Power BI?","DAX","Basic_DAX_Calculations","EASY"  
+"How do I implement row-level security in Power BI?","Power_BI_Security","Row_Level_Security","MEDIUM"

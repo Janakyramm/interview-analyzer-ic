@@ -1,0 +1,5 @@
+user_id,interviewer_id,interview_id,interview_track,coding_question,coding_language,user_answer,remarks
+UID1,INV1,INT-1220,NIAT,write a code for printing right angle triangle,C++,"cpp\n#include <iostream>\nusing namespace std;\n\nint main() {\n int rows;\n cout << ""Enter the number of rows: "";\n cin >> rows;\n for(int i = 1; i <= rows; ++i) {\n for(int j = 1; j <= i; ++j) {\n cout << ""* "";\n }\n cout << endl;\n }\n return 0;\n}\n",Hi
+UID1,INV1,INT-1191,NIAT,write a code to reverse a string,Python,"python\ns = input('Enter a string: ')\nprint('Reversed string:', s[::-1])\n",Hello
+UID1,INV1,INT-1191,NIAT,create a simple HTML form,HTML,"html\n<form action=""/submit"">\n <label for=""name"">Name:</label><br>\n <input type=""text"" id=""name"" name=""name""><br><br>\n <input type=""submit"" value=""Submit"">\n</form>\n",Hello
+UID1,INV1,INT-1191,NIAT,implement stack using list,Python,python\nstack = []\n\ndef push(val):\n stack.append(val)\n\ndef pop():\n if stack:\n return stack.pop()\n else:\n return 'Stack is empty'\n,Hello

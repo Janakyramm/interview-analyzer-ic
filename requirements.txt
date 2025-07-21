@@ -13,4 +13,3 @@ google-cloud-bigquery
 pydub
 db-dtypes
 pytz
-traceback
